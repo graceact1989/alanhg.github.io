@@ -14,13 +14,17 @@ tags:
 以实际例子来说明，我在实际使用中用到的一些命令
 ```
 
-#取github上仓库的某个分支
+# 取github上仓库的某个分支
 git clone -b source git@github.com:heqiang421/heqiang421.github.io.git
 
 git status
+
+# 添加当前目录的所有文件到暂存区
+git add .
+
 git commit -m 'message'
 
-#提交修改
+# 提交修改
 git push
 
 
