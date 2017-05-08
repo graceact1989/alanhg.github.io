@@ -23,6 +23,6 @@ ionic在跨平台开发中占有一席之地，闲暇之余，这里把ionic好�
 
 # 常见问题
 
-+ [ionic2中引入echarts图表](https://github.com/heqiang421/ionic2-demo/issues/9)
-+ [ionic跨域问题](https://github.com/heqiang421/ionic2-demo/issues/8)
-+ [关于ionic启动速度问题注意事项](https://github.com/heqiang421/ionic2-demo/issues/7)
+1. ## [ionic2中引入echarts图表](https://github.com/heqiang421/ionic2-demo/issues/9)
+2. ## [ionic跨域问题](https://github.com/heqiang421/ionic2-demo/issues/8)
+3. ## [关于ionic启动速度问题注意事项](https://github.com/heqiang421/ionic2-demo/issues/7)

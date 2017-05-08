@@ -29,6 +29,7 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 - 404.html
+- about/*.html
 - README.md
 - CHANGELOG.md
 - google71d0a179be9eaa73.html
