@@ -107,7 +107,7 @@ $ pm2 restart  <app_name|id|'all'|json_conf>
 $ pm2 delete   <app_name|id|'all'|json_conf>
 ```
 
-### 负载均和和不间断重启
+### 负载均衡和不间断重启
 当应用启动时加上了`-i <instance_option>选项时`，集群模式便开启了。
 集群模式下，应用汇自动的平衡请求，这个模式下也允许你能够依据CPU的数目灵活的提升表现。
 被所有NODE主流框架和任何NODE应用支持而不需要任何code改变。
@@ -158,7 +158,8 @@ $ pm2 unstartup
 在重启时保存进程列表
 `$ pm2 save`
 [更多关于启动脚本](http://pm2.keymetrics.io/docs/usage/startup/)
-## Module system
+
+## 模块系统
 PM2内嵌了简单而强大的模块系统，安装一个模块是很简单直接的事。
 `$ pm2 install <module_name>`
 下面是一些兼容模块 (standalone Node.js applications managed by PM2):
