@@ -3,13 +3,14 @@ title: Android反编译
 abbrlink: 792a6dc0
 date: 2017-03-13 08:26:53
 tags:
+- decompile
+- java
 ---
 由于需要，进行了反编译的学习，做了几次有点认识,及时总结下。
 
 ### 反编译需要用到工具
 
-- http://www.decompileandroid.com/
-  http://www.javadecompilers.com/apk 去壳，反编译
+- [jadx](https://github.com/skylot/jadx) 去壳，反编译
 - Charles、Fiddler,抓包
 - Android Studio，阅读项目代码
 

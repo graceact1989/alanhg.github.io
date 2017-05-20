@@ -3,7 +3,8 @@ title: ShadowSocks自定义规则
 abbrlink: 6f1919c7
 date: 2016-10-07 22:53:52
 tags:
-    - ss
+- 效率
+- 利器
 ---
 点击ss,选择编辑用户规则
 格式如下

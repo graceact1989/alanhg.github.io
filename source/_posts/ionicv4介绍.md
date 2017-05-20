@@ -1,7 +1,11 @@
 ---
 title: ionicv4介绍
+abbrlink: 48764c9e
 date: 2017-05-06 23:37:41
 tags:
+- ionic
+- hybrid
+- app
 ---
 ## 还有ionicv4？
 

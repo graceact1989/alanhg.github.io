@@ -28,11 +28,13 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+- CNAME
 - 404.html
 - about/*.html
 - README.md
 - CHANGELOG.md
 - google71d0a179be9eaa73.html
+- robots.txt
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -122,3 +124,9 @@ admin:
   password_hash: $2a$10$Itby7y1KENpZBIwiv2VBD.Raa1Eiz8MnFrSsEqRivOmmduauBOCDa
   secret: fighting
   deployCommand: './hexo-deploy.sh'
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
