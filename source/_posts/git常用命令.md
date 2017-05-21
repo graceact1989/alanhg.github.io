@@ -3,6 +3,7 @@ title: git常用命令
 abbrlink: 423abe9e
 date: 2017-05-05 23:22:37
 tags:
+- git
 ---
 
 # 前言
@@ -27,6 +28,14 @@ git commit -m 'message'
 # 提交修改
 git push
 
+# 更新远程代码到本地
+git pull
+
+# 停止追踪指定文件，但该文件会保留在工作区
+$ git rm --cached [file]
+
+# 删除工作区文件，并且将这次删除放入暂存区
+$ git rm [file1] [file2] ...
 
 ```
 # 常见错误
