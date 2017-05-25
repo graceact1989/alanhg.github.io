@@ -35,7 +35,7 @@ date: 2017-05-21 16:29:06
 ### 开始吧
 确认你有Node 6+ 和 npm 3+
 
-写在旧版CLI，全局安装新的CLI:
+卸载旧版CLI，全局安装新的CLI:
 
 ```
 npm uninstall -g ionic
