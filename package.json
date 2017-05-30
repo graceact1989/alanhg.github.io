@@ -11,6 +11,7 @@
     "hexo-abbrlink": "^2.0.4",
     "hexo-admin": "^2.1.0",
     "hexo-algoliasearch": "^0.2.1",
+    "hexo-baidu-url-submit": "0.0.5",
     "hexo-clean-css": "0.0.2",
     "hexo-deployer-git": "^0.2.0",
     "hexo-generator-archive": "^0.1.4",
