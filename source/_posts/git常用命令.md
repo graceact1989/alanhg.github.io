@@ -37,6 +37,12 @@ $ git rm --cached [file]
 # 删除工作区文件，并且将这次删除放入暂存区
 $ git rm [file1] [file2] ...
 
+# 列出远程仓库信息,包括网址
+$ git remote -v
+
+# 修改远程仓库对应的网址
+$ git remote set-url origin git@github.com:username/repo.git
+
 ```
 # 常见错误
 ## Git: fatal: Pathspec is in submodule
