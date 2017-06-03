@@ -1,0 +1,1224 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next muse" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node,英翻,pm2," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="原英文仓库网址，点击这里
+PM2 是一个node应用下，自带服务均衡的产品级进程管理器。使得能够保证应用一直处于运行状态，并且能够不间断的重启服务，方便管理这些系统任务。生产模式下启动一个应用是很容易的，就像这样:$ pm2 start app.jsPM2支持在Linux(稳定) &amp;amp; MacOSx (稳定) &amp;amp; Windows (稳定)工作.
+安装PM2$ npm install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PM2介绍">
+<meta property="og:url" content="http://www.1991421.cn/2016/09/19/pm2介绍/index.html">
+<meta property="og:site_name" content="进击之路">
+<meta property="og:description" content="原英文仓库网址，点击这里
+PM2 是一个node应用下，自带服务均衡的产品级进程管理器。使得能够保证应用一直处于运行状态，并且能够不间断的重启服务，方便管理这些系统任务。生产模式下启动一个应用是很容易的，就像这样:$ pm2 start app.jsPM2支持在Linux(稳定) &amp;amp; MacOSx (稳定) &amp;amp; Windows (稳定)工作.
+安装PM2$ npm install">
+<meta property="og:updated_time" content="2017-06-03T07:37:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PM2介绍">
+<meta name="twitter:description" content="原英文仓库网址，点击这里
+PM2 是一个node应用下，自带服务均衡的产品级进程管理器。使得能够保证应用一直处于运行状态，并且能够不间断的重启服务，方便管理这些系统任务。生产模式下启动一个应用是很容易的，就像这样:$ pm2 start app.jsPM2支持在Linux(稳定) &amp;amp; MacOSx (稳定) &amp;amp; Windows (稳定)工作.
+安装PM2$ npm install">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.1991421.cn/2016/09/19/pm2介绍/"/>
+
+
+
+
+
+  <title>PM2介绍 | 进击之路</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1b73b6cc967140cacf9fb6d3a4a9fdbd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">进击之路</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.1991421.cn/2016/09/19/pm2介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="进击之路">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">PM2介绍</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-19T21:37:13+08:00">
+                2016-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/19/pm2介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/19/pm2介绍/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原英文仓库网址，<a href="https://github.com/Unitech/pm2" target="_blank" rel="external">点击这里</a></p>
+<p>PM2 是一个node应用下，自带服务均衡的产品级进程管理器。使得能够保证应用一直处于运行状态，并且能够不间断的重启服务，方便管理这些系统任务。<br>生产模式下启动一个应用是很容易的，就像这样:<br><code>$ pm2 start app.js</code><br>PM2支持在Linux(稳定) &amp; MacOSx (稳定) &amp; Windows (稳定)工作.</p>
+<h2 id="安装PM2"><a href="#安装PM2" class="headerlink" title="安装PM2"></a>安装PM2</h2><p><code>$ npm install pm2 -g</code><br>npm命令是在你安装node时，自带的CLI - <a href="https://keymetrics.io/2015/02/03/installing-node-js-and-io-js-with-nvm/" target="_blank" rel="external">通过NVM安装node</a></p>
+<h2 id="更新PM2"><a href="#更新PM2" class="headerlink" title="更新PM2"></a>更新PM2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 安装最新版PM2</div><div class="line">$ npm install pm2 -g</div><div class="line"># 保存进程列表，退出旧的PM2，重新存储所有的进行</div><div class="line">$ pm2 update</div></pre></td></tr></table></figure>
+<p>PM2是无缝更新。</p>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><h3 id="命令表一览"><a href="#命令表一览" class="headerlink" title="命令表一览"></a>命令表一览</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"># 常用</div><div class="line">$ npm install pm2 -g            # 安装PM2</div><div class="line">$ pm2 start app.js              # 启动应用，一旦应用出故障，自动重启(Node)</div><div class="line">$ pm2 start app.py              # (Python)</div><div class="line">$ pm2 start npm -- start        # </div><div class="line"></div><div class="line"># 集群模式 (Node.js only)</div><div class="line">$ pm2 start app.js -i 4         # 集群模式，启动4个应用实例</div><div class="line">                                # 根据网络请求进行负载平衡</div><div class="line">$ pm2 reload all                # 无间断重启</div><div class="line">$ pm2 scale [app-name] 10       # 将集群APP进程数调到10</div><div class="line"></div><div class="line"># 进程检测</div><div class="line">$ pm2 list                      # 列出所有以PM2形式启动的应用</div><div class="line">$ pm2 monit                     # 列出每个应用内存及CPU使用情况</div><div class="line">$ pm2 show [app-name]           # 列出关于应用的所有信息</div><div class="line"></div><div class="line"># 日志管理</div><div class="line">$ pm2 logs                      # 列出所有应用日志</div><div class="line">$ pm2 logs [app-name]           # 列出指定应用的日志</div><div class="line">$ pm2 logs --json               # 以JSON格式列出日志</div><div class="line">$ pm2 flush</div><div class="line">$ pm2 reloadLogs</div><div class="line"></div><div class="line"># 进程状态管理</div><div class="line">$ pm2 start app.js --name=&quot;api&quot; # 启动应用，并命名为api</div><div class="line">$ pm2 start app.js -- -a 34     # 启动应用，并传参 &quot;-a 34&quot;</div><div class="line">$ pm2 start app.js --watch      # 一单文件修改，重启应用</div><div class="line">$ pm2 start script.sh           # 启动bash脚本</div><div class="line">$ pm2 start app.json            # 启动app.json文件中声明的所有应用</div><div class="line">$ pm2 reset [app-name]          # 重置应用计数器即重启次数</div><div class="line">$ pm2 stop all                  # 停止所有的应用</div><div class="line">$ pm2 stop 0                    # 停止id为0的应用</div><div class="line">$ pm2 restart all               # 重启所有应用</div><div class="line">$ pm2 gracefulReload all        # 集群模式下重启所有应用</div><div class="line">$ pm2 delete all                # 停止且删除所有应用</div><div class="line">$ pm2 delete 0                  # 停止且删除id为0的应用</div><div class="line"></div><div class="line"># 启动管理</div><div class="line">$ pm2 startup                   # 监听初始化系统，生成且配置PM2启动脚本</div><div class="line">$ pm2 save                      # 存储当前进程列表</div><div class="line">$ pm2 resurrect                 # 重新存储之前存储的进程</div><div class="line">$ pm2 unstartup                 # 停用并删除启动程序</div><div class="line"></div><div class="line">$ pm2 update                    # 存储进程，中止并重新存储进程</div><div class="line">$ pm2 generate                  # 生成一个JSON格式样例配置文件</div><div class="line"></div><div class="line"># 部署</div><div class="line">$ pm2 deploy app.json prod setup    # </div><div class="line">$ pm2 deploy app.json prod          # </div><div class="line">$ pm2 deploy app.json prod revert 2 # </div><div class="line"></div><div class="line"># 模块系统</div><div class="line">$ pm2 module:generate [name]    # 生成name名称的样例模块</div><div class="line">$ pm2 install pm2-logrotate     # 安装模块(会有一个日志系统)</div><div class="line">$ pm2 uninstall pm2-logrotate   # 模块卸载</div><div class="line">$ pm2 publish</div></pre></td></tr></table></figure>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>一旦应用启动，你可以很方便的列出和管理</p>
+<p>列出所有运行中的进程<br><code>$ pm2 list</code><br>直接管理你的进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pm2 stop     &lt;app_name|id|&apos;all&apos;|json_conf&gt;</div><div class="line">$ pm2 restart  &lt;app_name|id|&apos;all&apos;|json_conf&gt;</div><div class="line">$ pm2 delete   &lt;app_name|id|&apos;all&apos;|json_conf&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="负载均衡和不间断重启"><a href="#负载均衡和不间断重启" class="headerlink" title="负载均衡和不间断重启"></a>负载均衡和不间断重启</h3><p>当应用启动时加上了<code>-i &lt;instance_option&gt;选项时</code>，集群模式便开启了。<br>集群模式下，应用汇自动的平衡请求，这个模式下也允许你能够依据CPU的数目灵活的提升表现。<br>被所有NODE主流框架和任何NODE应用支持而不需要任何code改变。</p>
+<p>主要命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pm2 start app.js -i max  # Enable load-balancer and start &apos;max&apos; instances (cpu nb)</div><div class="line"></div><div class="line">$ pm2 reload all           # Zero second dowtime reload</div><div class="line"></div><div class="line">$ pm2 scale &lt;app_name&gt; &lt;instance_number&gt; # Increase / Decrease process number</div></pre></td></tr></table></figure></p>
+<p><a href="https://keymetrics.io/2015/03/26/pm2-clustering-made-easy/" target="_blank" rel="external">更多信息关于如何在PM2下使用集群化</a></p>
+<h3 id="日志能力"><a href="#日志能力" class="headerlink" title="日志能力"></a>日志能力</h3><p>显示特定进程或者所有进程，实时，标准，真实，JSON和格式化输出</p>
+<p><code>$ pm2 logs [&#39;all&#39;|app_name|app_id] [--json] [--format] [--raw]</code></p>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ pm2 logs APP-NAME       # Display APP-NAME logs</div><div class="line">$ pm2 logs --json         # JSON output</div><div class="line">$ pm2 logs --format       # Formated output</div><div class="line"></div><div class="line">$ pm2 flush               # Flush all logs</div><div class="line">$ pm2 reloadLogs          # Reload all logs</div></pre></td></tr></table></figure></p>
+<h3 id="启动脚本生成"><a href="#启动脚本生成" class="headerlink" title="启动脚本生成"></a>启动脚本生成</h3><p>PM2能够生成并配置启动脚本，从而使PM2和你的进程能够在每次服务器重启时保持运行状态。<br>支持初始化系统包括：systemd (Ubuntu 16, CentOS, Arch), upstart (Ubuntu 14/12), launchd (MacOSx, Darwin), rc.d (FreeBSD).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># Auto detect init system + generate and setup PM2 boot at server startup</div><div class="line">$ pm2 startup</div><div class="line"></div><div class="line"># Manually specify the startup system</div><div class="line"># Can be: systemd, upstart, launchd, rcd</div><div class="line">$ pm2 startup [platform]</div><div class="line"></div><div class="line"># Disable and remove PM2 boot at server startup</div><div class="line">$ pm2 unstartup</div></pre></td></tr></table></figure></p>
+<p>在重启时保存进程列表<br><code>$ pm2 save</code><br><a href="http://pm2.keymetrics.io/docs/usage/startup/" target="_blank" rel="external">更多关于启动脚本</a></p>
+<h2 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h2><p>PM2内嵌了简单而强大的模块系统，安装一个模块是很简单直接的事。<br><code>$ pm2 install &lt;module_name&gt;</code><br>下面是一些兼容模块 (standalone Node.js applications managed by PM2):</p>
+<p>pm2-logrotate auto rotate logs of PM2 and applications managed<br>pm2-webshell expose a fully capable terminal in browsers<br>pm2-server-monit monitor your server health</p>
+<p><a href="http://pm2.keymetrics.io/docs/advanced/pm2-module-system/" target="_blank" rel="external">写你自己的模块</a></p>
+<h3 id="Keymetrics监测"><a href="#Keymetrics监测" class="headerlink" title="Keymetrics监测"></a>Keymetrics监测</h3><p>如果你使用PM2来管理你的NodeJS app，Keymetrics使得通过服务器去监测应用变得很容易。<br>谢谢，希望你喜欢PM2！</p>
+<h2 id="更多关于PM2的资料"><a href="#更多关于PM2的资料" class="headerlink" title="更多关于PM2的资料"></a>更多关于PM2的资料</h2><ul>
+<li><a href="http://pm2.keymetrics.io/docs/usage/application-declaration/" target="_blank" rel="external">Application Declaration via JS files</a></li>
+<li><a href="http://pm2.keymetrics.io/docs/usage/watch-and-restart/" target="_blank" rel="external">Watch &amp; Restart</a></li>
+<li><a href="http://pm2.keymetrics.io/docs/usage/pm2-api/" target="_blank" rel="external">PM2 API</a></li>
+<li><a href="http://pm2.keymetrics.io/docs/usage/deployment/" target="_blank" rel="external">Deployment workflow</a></li>
+<li><a href="http://pm2.keymetrics.io/docs/usage/use-pm2-with-cloud-providers/" target="_blank" rel="external">PM2 on Heroku/Azure/App Engine</a></li>
+<li><a href="http://pm2.keymetrics.io/docs/usage/auto-completion/" target="_blank" rel="external">PM2 auto completion</a></li>
+<li><a href="http://pm2.keymetrics.io/docs/tutorials/use-pm2-with-aws-elastic-beanstalk/" target="_blank" rel="external">Using PM2 in ElasticBeanStalk</a></li>
+<li><a href="https://futurestud.io/tutorials/pm2-utility-overview-installation" target="_blank" rel="external">PM2 Tutorial Series</a></li>
+</ul>
+<h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p><a href="https://github.com/Unitech/PM2/blob/master/CHANGELOG.md" target="_blank" rel="external">CHANGELOG</a></p>
+<h2 id="贡献者"><a href="#贡献者" class="headerlink" title="贡献者"></a>贡献者</h2><p><a href="http://pm2.keymetrics.io/hall-of-fame/" target="_blank" rel="external">贡献者</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/英翻/" rel="tag"># 英翻</a>
+          
+            <a href="/tags/pm2/" rel="tag"># pm2</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/jstree使用说明/" rel="next" title="jstree使用说明">
+                <i class="fa fa-chevron-left"></i> jstree使用说明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/06/如何使用Angular-2绑定表单元素/" rel="prev" title="如何使用Angular 2绑定表单元素">
+                如何使用Angular 2绑定表单元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.png"
+               alt="He" />
+          <p class="site-author-name" itemprop="name">He</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/alanhg" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/heheqiang" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog" title="ruanyifeng" target="_blank">ruanyifeng</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://kunl.github.io" title="Kunl" target="_blank">Kunl</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装PM2"><span class="nav-number">1.</span> <span class="nav-text">安装PM2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新PM2"><span class="nav-number">2.</span> <span class="nav-text">更新PM2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要功能"><span class="nav-number">3.</span> <span class="nav-text">主要功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令表一览"><span class="nav-number">3.1.</span> <span class="nav-text">命令表一览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程管理"><span class="nav-number">3.2.</span> <span class="nav-text">进程管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载均衡和不间断重启"><span class="nav-number">3.3.</span> <span class="nav-text">负载均衡和不间断重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志能力"><span class="nav-number">3.4.</span> <span class="nav-text">日志能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动脚本生成"><span class="nav-number">3.5.</span> <span class="nav-text">启动脚本生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块系统"><span class="nav-number">4.</span> <span class="nav-text">模块系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Keymetrics监测"><span class="nav-number">4.1.</span> <span class="nav-text">Keymetrics监测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多关于PM2的资料"><span class="nav-number">5.</span> <span class="nav-text">更多关于PM2的资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新日志"><span class="nav-number">6.</span> <span class="nav-text">更新日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贡献者"><span class="nav-number">7.</span> <span class="nav-text">贡献者</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">He</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https://cdn.staticfile.org/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.staticfile.org/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://qianghe.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.1991421.cn/2016/09/19/pm2介绍/';
+          this.page.identifier = '2016/09/19/pm2介绍/';
+          this.page.title = 'PM2介绍';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://qianghe.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
