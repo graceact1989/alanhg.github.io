@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[一款wakatime-app]]></title>
+    <url>%2F2017%2F06%2F04%2F%E4%B8%80%E6%AC%BEwakatime-app%2F</url>
+    <content type="text"><![CDATA[Codetracker个人业余时间制作的APP a wakatime client可视化展示编码活动 What is wakatime?wakatime是个全自动化的时间追踪工具,依赖于大量的IDE插件及文本编辑器，可以对我们从事coding活动所花费的时间进行可视化展示，让你明白在那些时间里，都做了什么。 what is codetracker?codetracker是利用wakatimek开放的API，实现移动端可视化显示wakatime对于coding统计。用开源的技术做开发的事，一方面练习技术，解手痒，一方面满足自己或者有同类需求的友人。 时间匆匆流逝，其实我们做技术的更需要利用技术来了解自己的情况，而wakatime是个很好的工具，个人特别喜欢! 下载方式 Github官方仓库 腾讯应用商店 etc，陆续入驻中]]></content>
+      <tags>
+        <tag>app</tag>
+        <tag>wakatime</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[expressjs获去请求IP问题]]></title>
     <url>%2F2017%2F05%2F31%2Fexpressjs%E8%8E%B7%E5%8E%BB%E8%AF%B7%E6%B1%82IP%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[在实际开发中遇到这样的情况，比如一些外企企业，使用了网络代理，我在后端获取IP，发现存在空的情况。分析下，原因如下:当我们应用设定了信任代理的时候，直接使用req.ip获取的会是客户端的真实IP，但是信任代理的话，代理是会修改XXF头部信息的，比如我遇到的情况就是代理修改请求头，导致我获取的req.ip为空，其实代理改了头，隐藏了真实客户端IP的话，的确我们是不可能得到真实的客户端IP了，但是代理本身的IP还是可以得到的，所以，我就封装了我自己的获取IP方法， 12345678910111213141516171819/** * 获取客户端IP地址 * req.ips would be [&quot;client&quot;, &quot;proxy1&quot;, &quot;proxy2&quot;] * 优先取客户端真实IP或最接近客户端一级的代理IP */util.getClientIP = function (req) &#123; let ip = req.ip; if (!ip) &#123; for (let item in req.ips) &#123; if (item) &#123; ip = item; break; &#125; &#125; logger.info(&apos;req.ips&apos;); logger.info(JSON.stringify(req.ips)); &#125; return ip;&#125;; 这个方案主要是弥补了我单纯使用req.ip获取客户端IP，会存在空的问题。当然我们也可以设定不信任代理，但是这样子就意味着只获取客户端IP，永远不会知道代理环节的IP，所以代理信任设定，要看实际场景了。 app.enabled(‘trust proxy’)当设定了信任代理时，express会获得客户端连接请求中的IP地址。 req.ip使用req.ip获取请求IP地址，当设定了信任代理时，这个值会是X-Forwarded-For header中的最左边值。12req.ip// =&gt; &quot;127.0.0.1&quot; req.ips当设定了信任代理时，这个值会是个IP地址数组，req.ips会是这样[&quot;client&quot;, &quot;proxy1&quot;, &quot;proxy2&quot;]]]></content>
