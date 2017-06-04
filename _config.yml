@@ -77,10 +77,10 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
-  repository: git@github.com:alanhg/alanhg.git
-  branch: master
-- type: baidu_url_submitter ## 这是新加的
+  - type: git
+    repo: git@github.com:alanhg/alanhg.github.io.git
+    branch: master
+  - type: baidu_url_submitter ## 这是新加的
 
 
 # abbrlink config
