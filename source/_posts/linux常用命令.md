@@ -21,4 +21,15 @@ env # 查看环境变量
 vi filename
 cat filename
 
+# 删除文件
+$ rm filename
+
+# 删除文件夹
+$ rm -rf dir
+```
+## 目录操作
+
+```
+# 当前用户目录下
+$ cd ~
 ```
