@@ -13,7 +13,7 @@ date: 2017-06-04 14:28:40
 
 可视化展示编码活动
 
-![图标](https://github.com/alanhg/codetracker/blob/master/resources/ios/icon/icon-40%403x.png)
+![图标](http://or0g12e5e.bkt.clouddn.com/icon-40@3x.png)
 
 ## [What is wakatime?](https://wakatime.com/about)
 
