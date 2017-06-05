@@ -309,6 +309,145 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.1991421.cn/2017/06/05/同一电脑github与gitlab共存问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="进击之路">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/05/同一电脑github与gitlab共存问题/" itemprop="url">同一电脑github与gitlab共存问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T22:52:54+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/05/同一电脑github与gitlab共存问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/05/同一电脑github与gitlab共存问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在实际开发中，遇到这样一个问题，公司项目管理用到了<code>gitlab</code>，自己的业余项目开发用到了<code>github</code>，但两者的账户是不同的，以我为例，<code>gitlab</code>是公司邮箱<code>he@company.com</code>，<code>github</code>是个人邮箱<code>he@1991421.cn</code>这样就存在冲突问题，在网上检索后，总结下解决方法。</p>
+<h2 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h2><ul>
+<li><p>生成SSH-key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cd ~/.ssh/</div><div class="line"># 生成github所需要用的，使用默认名称回车跳过</div><div class="line">$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot;</div><div class="line"></div><div class="line"># 生成gitlab公司所需要用的，进行重命名id_rsa_company</div><div class="line">$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot;</div></pre></td></tr></table></figure>
+<p>这样两者的密钥就是分开生成了 互不冲突</p>
+</li>
+<li><p>粘贴公钥到对应的平台<br><code>cat id_rsa.pub</code><br><code>cat id_rsa_company.pub</code></p>
+</li>
+<li><p>配置config<br>执行<code>touch config</code>，创建配置文件<br>将下面的配置粘贴进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># company-gitlab</div><div class="line">Host 192.168.1.140</div><div class="line">HostName 192.168.1.140</div><div class="line">IdentityFile ~/.ssh/id_rsa_company</div><div class="line"># github</div><div class="line">Host github</div><div class="line">HostName github.com</div><div class="line">IdentityFile ~/.ssh/id_rsa</div></pre></td></tr></table></figure>
+</li>
+<li><p>检测是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># github</div><div class="line">ssh -T git@github.com</div><div class="line"></div><div class="line"># 内网gitlab</div><div class="line">ssh -T git@192.168.1.150</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>不报错，说明OK。这样就可以正常的取仓库代码和提交代码了。</p>
+<h2 id="注意细节"><a href="#注意细节" class="headerlink" title="注意细节"></a>注意细节</h2><p>由于git全局我配置的是我github的用户名和邮箱，所以在我git clone了gitlab仓库时，还需要在仓库根目录下进行下用户名和邮箱配置。<br>不然提交上的记录显示的会是github的信息。<br>相关命令如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config [--global] user.name &quot;[name]&quot;</div><div class="line">$ git config [--global] user.email &quot;[email address]&quot;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.1991421.cn/2017/06/04/一款wakatime-app/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1500,135 +1639,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.1991421.cn/2017/05/05/git常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="进击之路">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/05/git常用命令/" itemprop="url">git常用命令</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-05T23:22:37+08:00">
-                2017-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/05/git常用命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/05/git常用命令/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想玩好Github开源项目，不懂git不行，所以这里记录下，在使用中，用到的一些命令，方便自己以后去反复记忆，同时也希望能帮到一些朋友。</p>
-<p>主要的命令记住，方便操作，其余的会查询即可。</p>
-<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>以实际例子来说明，我在实际使用中用到的一些命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 取github上仓库的某个分支</div><div class="line">git clone -b source git@github.com:heqiang421/heqiang421.github.io.git</div><div class="line"></div><div class="line">git status</div><div class="line"></div><div class="line"># 添加当前目录的所有文件到暂存区</div><div class="line">git add .</div><div class="line"></div><div class="line">git commit -m &apos;message&apos;</div><div class="line"></div><div class="line"># 提交修改</div><div class="line">git push</div><div class="line"></div><div class="line"># 更新远程代码到本地</div><div class="line">git pull</div><div class="line"></div><div class="line"># 停止追踪指定文件，但该文件会保留在工作区</div><div class="line">$ git rm --cached [file]</div><div class="line"></div><div class="line"># 删除工作区文件，并且将这次删除放入暂存区</div><div class="line">$ git rm [file1] [file2] ...</div><div class="line"></div><div class="line"># 列出远程仓库信息,包括网址</div><div class="line">$ git remote -v</div><div class="line"></div><div class="line"># 修改远程仓库对应的网址</div><div class="line">$ git remote set-url origin git@github.com:username/repo.git</div></pre></td></tr></table></figure></p>
-<h1 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h1><h2 id="Git-fatal-Pathspec-is-in-submodule"><a href="#Git-fatal-Pathspec-is-in-submodule" class="headerlink" title="Git: fatal: Pathspec is in submodule"></a>Git: fatal: Pathspec is in submodule</h2><p> 解决办法：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm --cached directory</div><div class="line">git add directory</div></pre></td></tr></table></figure></p>
-<h1 id="辅助资料"><a href="#辅助资料" class="headerlink" title="辅助资料"></a>辅助资料</h1><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">常用 Git 命令清单</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1678,7 +1688,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[同一电脑github与gitlab共存问题]]></title>
+    <url>%2F2017%2F06%2F05%2F%E5%90%8C%E4%B8%80%E7%94%B5%E8%84%91github%E4%B8%8Egitlab%E5%85%B1%E5%AD%98%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[问题描述在实际开发中，遇到这样一个问题，公司项目管理用到了gitlab，自己的业余项目开发用到了github，但两者的账户是不同的，以我为例，gitlab是公司邮箱he@company.com，github是个人邮箱he@1991421.cn这样就存在冲突问题，在网上检索后，总结下解决方法。 解决步骤 生成SSH-key 123456cd ~/.ssh/# 生成github所需要用的，使用默认名称回车跳过$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot;# 生成gitlab公司所需要用的，进行重命名id_rsa_company$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot; 这样两者的密钥就是分开生成了 互不冲突 粘贴公钥到对应的平台cat id_rsa.pubcat id_rsa_company.pub 配置config执行touch config，创建配置文件将下面的配置粘贴进去 12345678# company-gitlabHost 192.168.1.140HostName 192.168.1.140IdentityFile ~/.ssh/id_rsa_company# githubHost githubHostName github.comIdentityFile ~/.ssh/id_rsa 检测是否成功 12345# githubssh -T git@github.com# 内网gitlabssh -T git@192.168.1.150 不报错，说明OK。这样就可以正常的取仓库代码和提交代码了。 注意细节由于git全局我配置的是我github的用户名和邮箱，所以在我git clone了gitlab仓库时，还需要在仓库根目录下进行下用户名和邮箱配置。不然提交上的记录显示的会是github的信息。相关命令如下12$ git config [--global] user.name &quot;[name]&quot;$ git config [--global] user.email &quot;[email address]&quot;]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[一款wakatime-app]]></title>
     <url>%2F2017%2F06%2F04%2F%E4%B8%80%E6%AC%BEwakatime-app%2F</url>
     <content type="text"><![CDATA[Codetracker个人业余时间制作的APP a wakatime client可视化展示编码活动 What is wakatime?wakatime是个全自动化的时间追踪工具,依赖于大量的IDE插件及文本编辑器，可以对我们从事coding活动所花费的时间进行可视化展示，让你明白在那些时间里，都做了什么。 what is codetracker?codetracker是利用wakatimek开放的API，实现移动端可视化显示wakatime对于coding统计。用开源的技术做开发的事，一方面练习技术，解手痒，一方面满足自己或者有同类需求的友人。 时间匆匆流逝，其实我们做技术的更需要利用技术来了解自己的情况，而wakatime是个很好的工具，个人特别喜欢! 下载方式 Github官方仓库 腾讯应用商店 etc，陆续入驻中]]></content>
@@ -108,7 +113,7 @@
   <entry>
     <title><![CDATA[个人利器分享]]></title>
     <url>%2F2017%2F04%2F29%2F%E4%B8%AA%E4%BA%BA%E5%88%A9%E5%99%A8%E5%88%86%E4%BA%AB%2F</url>
-    <content type="text"><![CDATA[工欲善其事必先利其器 通过各个工具即利器来不断优化工作和生活 硬件 Macbook Pro -高效生产力工具 IPhone -重新定义了你对手机的认识，省心且强大 Kindle Paperwhite-墨水屏电子书阅读设备，真不错，续航也是好到爆 Filco机械键盘-日货，工艺，手感，好到爆，1000多元，对比实物，真不贵。 JBL蓝牙小音箱-真不错，音质可以 Logitech蓝牙鼠标-，不错，无线的确是未来，省空间 Thermos保温杯-膳魔师热水杯，保温效果不错 Victorinox-瑞士军刀，做工真好，且锋利，对比平时买的几十元水果刀，差距太大了，`强烈推荐来一个 Braun剃须刀-博朗，德国做工，手感不错，用着舒服 Philips电动牙刷-，续航不错，质地也很好 软件 搬瓦工-搭建SS及VPN，解决墙的问题 Google photos-个人图片存储方案 印象笔记-知识管理 DASH-各技术API学习、检索工具 Iterm2-MAC下命令行利器 Putty-win下命令行利器 Chrome-浏览器第一选择 Switchhost-切换管理host配合项 JetbrainsIDE-旗下IDE，高效开发，大量节约时间，聚焦于开发-coding本身 Macdown-mac下md编写利器，可惜win下没有类似好用的，正考虑自己写一个得了，顺便还开源 网易云音乐-音乐软件中最好，而且还免费 知乎APP-学知识 行者APP-骑行者需要 网站 Google,谷歌搜索才是搜索，百度，我呵呵 Github,一个程序员连这都不知道，也不常逛，我相信水平呵呵，很大程度上是这样 Twitter,比新浪微博干净 500px，美图聚集地 YouTube，看剧，我喜欢上这里，广告少，评论及推荐都挺有意思 说明总结这些牌子、设备、软件、网站，是对我自己工作生活中整理的一部分，这些东西都潜移默化地影响生活中的点滴，而这些细节最终一定程度也会改变着我的生活和工作。同时呢，也分享给看到的网友，的确，这些东西很棒，你们可以一试。]]></content>
+    <content type="text"><![CDATA[工欲善其事必先利其器 通过各个工具即利器来不断优化工作和生活 硬件 Macbook Pro -高效生产力工具 IPhone -重新定义了你对手机的认识，省心且强大 Kindle Paperwhite-墨水屏电子书阅读设备，真不错，续航也是好到爆 Filco机械键盘-日货，工艺，手感，好到爆，1000多元，对比实物，真不贵。 JBL蓝牙小音箱-真不错，音质可以 Logitech蓝牙鼠标-，不错，无线的确是未来，省空间 Fitbit Alta HR-轻薄的心率监测智能手环，健身、睡眠、时间,基本功能都有，颜值高。 Thermos保温杯-膳魔师热水杯，保温效果不错 Victorinox-瑞士军刀，做工真好，且锋利，对比平时买的几十元水果刀，差距太大了，`强烈推荐来一个 Braun剃须刀-博朗，德国做工，手感不错，用着舒服 Philips电动牙刷-，续航不错，质地也很好 软件 搬瓦工-搭建SS及VPN，解决墙的问题 Google photos-个人图片存储方案 印象笔记-知识管理 DASH-各技术API学习、检索工具 Iterm2-MAC下命令行利器 Putty-win下命令行利器 Chrome-浏览器第一选择 Switchhost-切换管理host配合项 JetbrainsIDE-旗下IDE，高效开发，大量节约时间，聚焦于开发-coding本身 visual studio code-轻量级code编辑器，资源消耗小，支持大量丰富插件 Macdown-mac下md编写利器，可惜win下没有类似好用的，正考虑自己写一个得了，顺便还开源 网易云音乐-音乐软件中最好，而且还免费 知乎APP-学知识 行者APP-骑行者需要 网站 Google,谷歌搜索才是搜索，百度，我呵呵 Github,一个程序员连这都不知道，也不常逛，我相信水平呵呵，很大程度上是这样 Twitter,比新浪微博干净 500px，美图聚集地 YouTube，看剧，我喜欢上这里，广告少，评论及推荐都挺有意思 iconfont,字体图标库，搞前端的必须 说明总结这些牌子、设备、软件、网站，是对我自己工作生活中整理的一部分，这些东西都潜移默化地影响生活中的点滴，而这些细节最终一定程度也会改变着我的生活和工作。同时呢，也分享给看到的网友，的确，这些东西很棒，你们可以一试。]]></content>
       <tags>
         <tag>效率</tag>
         <tag>利器</tag>
