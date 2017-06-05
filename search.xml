@@ -4,6 +4,11 @@
     <title><![CDATA[同一电脑github与gitlab共存问题]]></title>
     <url>%2F2017%2F06%2F05%2F%E5%90%8C%E4%B8%80%E7%94%B5%E8%84%91github%E4%B8%8Egitlab%E5%85%B1%E5%AD%98%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[问题描述在实际开发中，遇到这样一个问题，公司项目管理用到了gitlab，自己的业余项目开发用到了github，但两者的账户是不同的，以我为例，gitlab是公司邮箱he@company.com，github是个人邮箱he@1991421.cn这样就存在冲突问题，在网上检索后，总结下解决方法。 解决步骤 生成SSH-key 123456cd ~/.ssh/# 生成github所需要用的，使用默认名称回车跳过$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot;# 生成gitlab公司所需要用的，进行重命名id_rsa_company$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot; 这样两者的密钥就是分开生成了 互不冲突 粘贴公钥到对应的平台cat id_rsa.pubcat id_rsa_company.pub 配置config执行touch config，创建配置文件将下面的配置粘贴进去 12345678# company-gitlabHost 192.168.1.140HostName 192.168.1.140IdentityFile ~/.ssh/id_rsa_company# githubHost githubHostName github.comIdentityFile ~/.ssh/id_rsa 检测是否成功 12345# githubssh -T git@github.com# 内网gitlabssh -T git@192.168.1.150 不报错，说明OK。这样就可以正常的取仓库代码和提交代码了。 注意细节由于git全局我配置的是我github的用户名和邮箱，所以在我git clone了gitlab仓库时，还需要在仓库根目录下进行下用户名和邮箱配置。不然提交上的记录显示的会是github的信息。相关命令如下12$ git config [--global] user.name &quot;[name]&quot;$ git config [--global] user.email &quot;[email address]&quot;]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>gitlab</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[一款wakatime-app]]></title>
