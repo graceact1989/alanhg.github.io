@@ -3,6 +3,9 @@ title: 同一电脑github与gitlab共存问题
 abbrlink: 9811465d
 date: 2017-06-05 22:52:54
 tags:
+- git
+- github
+- gitlab
 ---
 ## 问题描述
 在实际开发中，遇到这样一个问题，公司项目管理用到了`gitlab`，自己的业余项目开发用到了`github`，但两者的账户是不同的，以我为例，`gitlab`是公司邮箱`he@company.com`，`github`是个人邮箱`he@1991421.cn`这样就存在冲突问题，在网上检索后，总结下解决方法。
