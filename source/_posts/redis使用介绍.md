@@ -12,16 +12,18 @@ tags:
 ## 相关操作
 ```
 # yum安装
-yum install -y redis
+$ yum install -y redis
 
-# 启动服务
-redis-server /etc/redis.conf
+# 简单 形式启动
+$ redis-server /etc/redis.conf
+# 服务形式启动
+$ service start redis
 
 # 进入CLI
-redis-cli
+$ redis-cli
 
 # 服务自启动
-chkconfig redis on   
+$ chkconfig redis on   
 
 ```
 ## 其它
