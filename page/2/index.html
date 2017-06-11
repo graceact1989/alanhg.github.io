@@ -309,6 +309,146 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.1991421.cn/2017/05/06/ionicv4介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="进击之路">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/06/ionicv4介绍/" itemprop="url">ionicv4介绍</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-06T23:37:41+08:00">
+                2017-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/06/ionicv4介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/06/ionicv4介绍/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="还有ionicv4？"><a href="#还有ionicv4？" class="headerlink" title="还有ionicv4？"></a>还有ionicv4？</h2><p>ionic官方仓库已经创建了v4分支，也给出了v4的介绍及愿景，这里我翻一下，想看原文<a href="https://github.com/driftyco/ionic/blob/v4/README.md" target="_blank" rel="external">点击这里</a></p>
+<h2 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h2><p>ionic组件向着以下目标发展</p>
+<ul>
+<li>用户继续用angular组件开发APP和组件</li>
+<li>开发和构建不会有变化</li>
+<li>用户使用上的改变将会最小化</li>
+<li>减少构建时间</li>
+<li>减少启动时间</li>
+<li>ionic组件的异步加载将会成为缺省配置</li>
+</ul>
+<p>对于大多数部分，<code>ionic-angular</code>将会按照同样的方式继续工作，想之前的版本一样使用所有的API，然而少量复杂的组件比如<code>ion-badge</code>,将会使用标准的web组件规范V1，这些规范在主流浏览器中已经实现且运行，<br>除此之外，对于那些不支持web组件的浏览器，<code>polyfills</code>将会按需添加，这点已经在v4项目中实现。</p>
+<p>我们将会继续开发维护v3主干分支，根本上来说，v3与v4的差异性是内在的，外在来说，v3，v4等同。</p>
+<h3 id="变化"><a href="#变化" class="headerlink" title="变化"></a>变化</h3><h3 id="NgModule-Updates"><a href="#NgModule-Updates" class="headerlink" title="@NgModule Updates"></a>@NgModule Updates</h3><p>What’s great is that Angular already supports and works with web components! In order to enable them simply add CUSTOM_ELEMENTS_SCHEMA to the schemas property of @NgModule, such as:</p>
+<p>import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from ‘@angular/core’;</p>
+<p>@NgModule({<br>  …<br>  schemas: [CUSTOM_ELEMENTS_SCHEMA]<br>})<br>export class AppModule {}</p>
+<h3 id="ion-label-Required"><a href="#ion-label-Required" class="headerlink" title="ion-label Required"></a>ion-label Required</h3><p>Previously an ion-label would automatically get added to ion-item if one wasn’t provided. Now an ion-label must always be added if the item is used to display text.</p>
+<p>  <ion-item><br>    <ion-label>Item’s Text!</ion-label><br>  </ion-item></p>
+<h2 id="未来的目标"><a href="#未来的目标" class="headerlink" title="未来的目标"></a>未来的目标</h2><p>ionic集成web组件标准，我们的目标之一是让ionic组件能够轻易的在所有主流的框架中运行。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.1991421.cn/2017/05/05/git常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1503,128 +1643,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.1991421.cn/2016/10/16/session在express中应用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="进击之路">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/16/session在express中应用/" itemprop="url">session在express中应用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-16T14:49:01+08:00">
-                2016-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/10/16/session在express中应用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/10/16/session在express中应用/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1674,7 +1692,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1687,7 +1705,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
