@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[NativeScript入门指南]]></title>
     <url>%2F2017%2F06%2F11%2FNativeScript%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%2F</url>
-    <content type="text"><![CDATA[nativescript是个跨平台开发框架，号称性能比原生差10%,同时又支持angular写法，这对于有web及ng开发人，算是足够有诱惑力啦。 环境搭建Node安装node安装具体直接到官网吧点击这里安装后，建议以下两点 安装nrm,切换源到淘宝，提升装包速度 安装nvm,控制机子多版本node问题 安装NativeScript CLInpm install -g nativescript 注意，全局安装 IOS和Android环境安装不同平台，策略不同具体安装细节照着官网文档吧，没必要重复 Windows Mac Linux 注意以下几点: Android环境，建议首先安装androidstudio,通过官方ide去管理sdk更方便 如果之前配置过安卓环境对应的步骤可以略过 校验程序tns doctor 创建项目tns create HelloWorld --template nativescript-template-ng-tutorial注意:模板形式创建的项目缺少App_Resources资源文件夹内容，所以直接执行下面的运行会报错，从github的官方demo上下载点击这里，拷贝文件夹放入项目中。 运行项目12tns run androidtns run ios 到此为止，应该初步OK了，下来就是详细的跟着官方doc学习下基本思想和基本玩法了。]]></content>
+    <content type="text"><![CDATA[nativescript是个跨平台开发框架，号称性能比原生差10%,同时又支持angular写法，这对于有web及ng开发人，算是足够有诱惑力啦。 环境搭建Node安装node安装具体直接到官网吧点击这里 建议： 安装nvm,控制机子多版本node问题 12nvm install nodenvm use 安装nrm,切换源到淘宝，提升装包速度 123$ npm i -g nrm$ nrm ls$ nrm use taobao //switch registry to taobao 安装NativeScript CLInpm install -g nativescript 注意，全局安装 IOS和Android环境安装不同平台，策略不同具体安装细节照着官网文档做，这里我没必要重复 Windows Mac Linux 注意: Android环境，建议首先安装androidstudio,通过官方ide去管理sdk更方便 如果之前配置过安卓环境对应的步骤可以略过 校验程序tns doctor 创建项目tns create HelloWorld --template nativescript-template-ng-tutorial注意:模板形式创建的项目缺少App_Resources资源文件夹内容，所以直接执行下面的运行会报错，从github的官方demo上下载点击这里，拷贝文件夹放入项目中。 运行项目12tns run androidtns run ios 到此为止，应该初步OK了，下来就是详细的跟着官方doc学习下基本思想和基本玩法了。]]></content>
       <tags>
         <tag>nativescript</tag>
       </tags>
