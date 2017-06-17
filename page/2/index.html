@@ -388,26 +388,23 @@
       
         
           
-            <h2 id="还有ionicv4？"><a href="#还有ionicv4？" class="headerlink" title="还有ionicv4？"></a>还有ionicv4？</h2><p>ionic官方仓库已经创建了v4分支，也给出了v4的介绍及愿景，这里我翻一下，想看原文<a href="https://github.com/driftyco/ionic/blob/v4/README.md" target="_blank" rel="external">点击这里</a></p>
-<h2 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h2><p>ionic组件向着以下目标发展</p>
-<ul>
-<li>用户继续用angular组件开发APP和组件</li>
-<li>开发和构建不会有变化</li>
-<li>用户使用上的改变将会最小化</li>
-<li>减少构建时间</li>
-<li>减少启动时间</li>
-<li>ionic组件的异步加载将会成为缺省配置</li>
-</ul>
-<p>对于大多数部分，<code>ionic-angular</code>将会按照同样的方式继续工作，想之前的版本一样使用所有的API，然而少量复杂的组件比如<code>ion-badge</code>,将会使用标准的web组件规范V1，这些规范在主流浏览器中已经实现且运行，<br>除此之外，对于那些不支持web组件的浏览器，<code>polyfills</code>将会按需添加，这点已经在v4项目中实现。</p>
-<p>我们将会继续开发维护v3主干分支，根本上来说，v3与v4的差异性是内在的，外在来说，v3，v4等同。</p>
-<h3 id="变化"><a href="#变化" class="headerlink" title="变化"></a>变化</h3><h3 id="NgModule-Updates"><a href="#NgModule-Updates" class="headerlink" title="@NgModule Updates"></a>@NgModule Updates</h3><p>What’s great is that Angular already supports and works with web components! In order to enable them simply add CUSTOM_ELEMENTS_SCHEMA to the schemas property of @NgModule, such as:</p>
-<p>import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from ‘@angular/core’;</p>
-<p>@NgModule({<br>  …<br>  schemas: [CUSTOM_ELEMENTS_SCHEMA]<br>})<br>export class AppModule {}</p>
-<h3 id="ion-label-Required"><a href="#ion-label-Required" class="headerlink" title="ion-label Required"></a>ion-label Required</h3><p>Previously an ion-label would automatically get added to ion-item if one wasn’t provided. Now an ion-label must always be added if the item is used to display text.</p>
-<p>  <ion-item><br>    <ion-label>Item’s Text!</ion-label><br>  </ion-item></p>
-<h2 id="未来的目标"><a href="#未来的目标" class="headerlink" title="未来的目标"></a>未来的目标</h2><p>ionic集成web组件标准，我们的目标之一是让ionic组件能够轻易的在所有主流的框架中运行。</p>
+          还有ionicv4？ionic官方仓库已经创建了v4分支，也给出了v4的介绍及愿景，这里我翻一下，想看原文点击这里
+翻译ionic组件向着以下目标发展
 
-          
+用户继续用angular组件开发APP和组件
+开发和构建不会有变化
+用户使用上的改变将会最小化
+减少构建时间
+减少启动时间
+ionic组件的异步加
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/06/ionicv4介绍/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -528,15 +525,17 @@
       
         
           
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>想玩好Github开源项目，不懂git不行，所以这里记录下，在使用中，用到的一些命令，方便自己以后去反复记忆，同时也希望能帮到一些朋友。</p>
-<p>主要的命令记住，方便操作，其余的会查询即可。</p>
-<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>以实际例子来说明，我在实际使用中用到的一些命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 取github上仓库的某个分支</div><div class="line">git clone -b source git@github.com:heqiang421/heqiang421.github.io.git</div><div class="line"></div><div class="line">git status</div><div class="line"></div><div class="line"># 添加当前目录的所有文件到暂存区</div><div class="line">git add .</div><div class="line"></div><div class="line">git commit -m &apos;message&apos;</div><div class="line"></div><div class="line"># 提交修改</div><div class="line">git push</div><div class="line"></div><div class="line"># 更新远程代码到本地</div><div class="line">git pull</div><div class="line"></div><div class="line"># 停止追踪指定文件，但该文件会保留在工作区</div><div class="line">$ git rm --cached [file]</div><div class="line"></div><div class="line"># 删除工作区文件，并且将这次删除放入暂存区</div><div class="line">$ git rm [file1] [file2] ...</div><div class="line"></div><div class="line"># 列出远程仓库信息,包括网址</div><div class="line">$ git remote -v</div><div class="line"></div><div class="line"># 修改远程仓库对应的网址</div><div class="line">$ git remote set-url origin git@github.com:username/repo.git</div></pre></td></tr></table></figure></p>
-<h1 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h1><h2 id="Git-fatal-Pathspec-is-in-submodule"><a href="#Git-fatal-Pathspec-is-in-submodule" class="headerlink" title="Git: fatal: Pathspec is in submodule"></a>Git: fatal: Pathspec is in submodule</h2><p> 解决办法：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rm --cached directory</div><div class="line">git add directory</div></pre></td></tr></table></figure></p>
-<h1 id="辅助资料"><a href="#辅助资料" class="headerlink" title="辅助资料"></a>辅助资料</h1><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">常用 Git 命令清单</a></li>
-</ul>
-
-          
+          前言想玩好Github开源项目，不懂git不行，所以这里记录下，在使用中，用到的一些命令，方便自己以后去反复记忆，同时也希望能帮到一些朋友。
+主要的命令记住，方便操作，其余的会查询即可。
+命令以实际例子来说明，我在实际使用中用到的一些命令1234567891011121314151617181920
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/05/git常用命令/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -657,26 +656,19 @@
       
         
           
-            <h1 id="ionic-demo"><a href="#ionic-demo" class="headerlink" title="ionic-demo"></a>ionic-demo</h1><p>ionic在跨平台开发中占有一席之地，闲暇之余，这里把ionic好好玩了把，做了这个demo，将常用到的一些功能点融于项目中，同时对常见的问题一一整理放在issue中<br>相信能够帮助一些人</p>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
-<li>水平有限</li>
-<li>问题<a href="https://github.com/heqiang421/ionic2-demo/issues" target="_blank" rel="external">查Issues</a>,无，请<a href="https://github.com/heqiang421/ionic2-demo/issues/new" target="_blank" rel="external">添加issue</a>,我会及时解答</li>
-<li>有回答的issue，在项目代码中可以找到具体的应用，当然有时会有延迟，因为实在很忙，敬请见谅</li>
-<li>ionic目前的最新版本是<code>V3.1.1</code>，未来还会是v4,准确来说现在叫ionic比叫ionic2而更对，angular4现在叫angular,以前是angularJS,</li>
-</ul>
-<h2 id="ionic做APP行不行"><a href="#ionic做APP行不行" class="headerlink" title="ionic做APP行不行"></a>ionic做APP行不行</h2><ul>
-<li>没有最好的，只有最合适的，ionic这种跨平台开，让web开发人员具备了开发APP的能力，另外对于一些企业的一些项目，提供了最快捷，最有效，最经济的解决方案。</li>
-<li>hybrid开发，从机理上来说，存在性能问题，但是随着用户手机设备的性能在提升，本身的ionic这种技术不断的优化，所以如果项目开发周期短，另外APP本身简单的话，使用ionic,<code>没问题的</code></li>
-<li>ionic经历了这几年，成熟了，现在推出的新ionic,最新版本是V3.1，经我使用，觉得进步还是很大的，体验不错</li>
-</ul>
-<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><ol>
-<li><h2 id="如何学习ionic开发"><a href="#如何学习ionic开发" class="headerlink" title="如何学习ionic开发"></a><a href="https://github.com/heqiang421/ionic2-demo/issues/14" target="_blank" rel="external">如何学习ionic开发</a></h2></li>
-<li><h2 id="ionic中引入echarts图表"><a href="#ionic中引入echarts图表" class="headerlink" title="ionic中引入echarts图表"></a><a href="https://github.com/heqiang421/ionic2-demo/issues/9" target="_blank" rel="external">ionic中引入echarts图表</a></h2></li>
-<li><h2 id="ionic跨域问题"><a href="#ionic跨域问题" class="headerlink" title="ionic跨域问题"></a><a href="https://github.com/heqiang421/ionic2-demo/issues/8" target="_blank" rel="external">ionic跨域问题</a></h2></li>
-<li><h2 id="关于ionic启动速度问题注意事项"><a href="#关于ionic启动速度问题注意事项" class="headerlink" title="关于ionic启动速度问题注意事项"></a><a href="https://github.com/heqiang421/ionic2-demo/issues/7" target="_blank" rel="external">关于ionic启动速度问题注意事项</a></h2></li>
-</ol>
-
-          
+          ionic-demoionic在跨平台开发中占有一席之地，闲暇之余，这里把ionic好好玩了把，做了这个demo，将常用到的一些功能点融于项目中，同时对常见的问题一一整理放在issue中相信能够帮助一些人
+说明
+水平有限
+问题查Issues,无，请添加issue,我会及时解答
+有回答的issue，在
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/29/ionic常见问题解答/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -797,9 +789,16 @@
       
         
           
-            <p>常用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 浏览器启动</div><div class="line">hexo s --debug</div><div class="line"></div><div class="line"># 生成静态页并直接部署</div><div class="line">hexo g -d</div><div class="line"></div><div class="line"># 创建一篇博文</div><div class="line">hexo new postname</div></pre></td></tr></table></figure></p>
+          常用命令123456789# 浏览器启动hexo s --debug# 生成静态页并直接部署hexo g -d# 创建一篇博文hexo new postname
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/29/使用hexo配合github搭建个人站点/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -920,48 +919,21 @@
       
         
           
-            <p><strong>工欲善其事必先利其器</strong></p>
-<p>通过各个工具即利器来不断优化工作和生活</p>
-<h2 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h2><ul>
-<li>Macbook Pro -高效生产力工具</li>
-<li>IPhone -重新定义了你对手机的认识，省心且强大</li>
-<li>Kindle Paperwhite-墨水屏电子书阅读设备，真不错，续航也是好到爆</li>
-<li>Filco机械键盘-日货，工艺，手感，好到爆，1000多元，对比实物，真不贵。</li>
-<li>JBL蓝牙小音箱-真不错，音质可以</li>
-<li>Logitech蓝牙鼠标-，不错，无线的确是未来，省空间</li>
-<li>Fitbit Alta HR-轻薄的心率监测智能手环，健身、睡眠、时间,基本功能都有，颜值高。</li>
-<li>Thermos保温杯-膳魔师热水杯，保温效果不错</li>
-<li>Victorinox-瑞士军刀，做工真好，且锋利，对比平时买的几十元水果刀，差距太大了，`强烈推荐来一个</li>
-<li>Braun剃须刀-博朗，德国做工，手感不错，用着舒服</li>
-<li>Philips电动牙刷-，续航不错，质地也很好</li>
-</ul>
-<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><ul>
-<li>搬瓦工-搭建SS及VPN，<code>解决墙的问题</code></li>
-<li>Google photos-个人图片存储方案</li>
-<li>印象笔记-知识管理</li>
-<li>DASH-各技术API学习、检索工具</li>
-<li>Iterm2-MAC下命令行利器</li>
-<li>Putty-win下命令行利器</li>
-<li>Chrome-浏览器第一选择</li>
-<li>Switchhost-切换管理host配合项</li>
-<li>JetbrainsIDE-旗下IDE，高效开发，大量节约时间，聚焦于开发-coding本身</li>
-<li>visual studio code-轻量级code编辑器，资源消耗小，支持大量丰富插件</li>
-<li>Macdown-mac下md编写利器，可惜win下没有类似好用的，正考虑自己写一个得了，顺便还开源</li>
-<li>网易云音乐-音乐软件中最好，而且还免费</li>
-<li>知乎APP-学知识</li>
-<li>行者APP-骑行者需要</li>
-</ul>
-<h2 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h2><ul>
-<li>Google,谷歌搜索才是搜索，百度，我呵呵</li>
-<li>Github,一个程序员连这都不知道，也不常逛，我相信水平呵呵，很大程度上是这样</li>
-<li>Twitter,比新浪微博干净</li>
-<li>500px，美图聚集地</li>
-<li>YouTube，看剧，我喜欢上这里，广告少，评论及推荐都挺有意思</li>
-<li>iconfont,字体图标库，搞前端的必须</li>
-</ul>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>总结这些<code>牌子</code>、<code>设备</code>、<code>软件</code>、<code>网站</code>，是对我自己工作生活中整理的一部分，这些东西都潜移默化地影响生活中的点滴，而这些细节最终一定程度也会改变着我的生活和工作。<br>同时呢，也分享给看到的网友，的确，这些东西很棒，你们可以一试。</p>
-
-          
+          工欲善其事必先利其器
+通过各个工具即利器来不断优化工作和生活
+硬件
+Macbook Pro -高效生产力工具
+IPhone -重新定义了你对手机的认识，省心且强大
+Kindle Paperwhite-墨水屏电子书阅读设备，真不错，续航也是好到爆
+Filco机械键盘-日货，工艺，手感，好到爆，1000
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/29/个人利器分享/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1082,9 +1054,16 @@
       
         
           
-            <p><a href="https://github.com/nomiddlename/log4js-node" target="_blank" rel="external">log4js</a></p>
+          log4js
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/05/nodejs日志组件log4js使用介绍/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1205,23 +1184,16 @@
       
         
           
-            <p>查看<a href="http://expressjs.com/zh-cn/4x/api.html#res.download" target="_blank" rel="external">expressAPI</a>，<br>对于文件下载，最简单的实现下载方法为如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">res.download(&apos;/report-12345.pdf&apos;, &apos;report.pdf&apos;, function(err)&#123;</div><div class="line">  if (err) &#123;</div><div class="line">    // Handle error, but keep in mind the response may be partially-sent</div><div class="line">    // so check res.headersSent</div><div class="line">  &#125; else &#123;</div><div class="line">    // decrement a download credit, etc.</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>但是这种方法在实际使用中，发现了问题，那就是苹果safari浏览器在下载时候，文件标题会自动截取一段，或者乱码，或者问号，<br>一开始表示不解，IE都没事，利用fiddler进行抓包分析，发现res头部信息不对劲儿，存在两个filename，也就是不同浏览器对于重复filename处理，不一样，或者说safari对于重复filename会有问题，也就是res.download的写法毕竟是高度封装的，<br>换句话说，不要用这种高度封装的写法就好了，那么如何解决呢。<br>如下一种写法，这种没有高度封装，自己去写返回头部信息，经测试Safari下载果然没问题了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let filename = &quot;你好，地球人你好，地球人你好，地球人你好，地球人.pdf&quot;;</div><div class="line">let filePath = path.resolve(__dirname, &apos;..&apos;) + &apos;/static/pdf/test.pdf&apos;;</div><div class="line">let mimetype = mime.lookup(filePath);</div><div class="line">res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename=&apos; + new Buffer(filename).toString(&apos;binary&apos;));</div><div class="line">res.setHeader(&apos;Content-type&apos;, mimetype);</div><div class="line">let filestream = fs.createReadStream(filePath);</div><div class="line">filestream.pipe(res);</div></pre></td></tr></table></figure>
-<p>对比发现，写法1比写法2简单的多，但是目前对于Safari、IE支持是不好的，如果直接用写法2，Edge又会有问题，这时又要牵扯对于不同浏览器，文件名中英文一堆的逻辑判断处理，<br>所以最好的解决办法是根据请求头部，对应处理下。<br>对于浏览器判别可以用下面的类库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">const parser = require(&apos;ua-parser-js&apos;);</div><div class="line">let ua = parser(req.headers[&apos;user-agent&apos;]);</div><div class="line"> if ([&apos;Edge&apos;, &apos;Chrome&apos;, &apos;Firefox&apos;].indexOf(ua.browser.name) &gt; -1) &#123;</div><div class="line">            res.download(filePath, filename, function (err) &#123;</div><div class="line">                    if (err) &#123;</div><div class="line">                        logger.error(&apos;有错误&apos;);</div><div class="line">                        logger.error(err)</div><div class="line">                    &#125;</div><div class="line">                    else &#123;</div><div class="line"></div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            );</div><div class="line">        &#125;</div><div class="line">        else &#123;</div><div class="line">            let mimetype = mime.lookup(filePath);</div><div class="line">            res.setHeader(&apos;Content-type&apos;, mimetype);</div><div class="line">            if (ua.browser.name == &apos;IE&apos;) &#123;</div><div class="line">                res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename=&apos; + encodeURIComponent(filename));</div><div class="line">            &#125; /*else if (ua.browser.name == &apos;Firefox&apos;) &#123;</div><div class="line">             res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename*=&quot;utf8\&apos;\&apos;&apos; + encodeURIComponent(filename) + &apos;&quot;&apos;);</div><div class="line">             &#125; */ else &#123;</div><div class="line">                /* safari等其他非主流浏览器只能自求多福了 */</div><div class="line">                res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename=&apos; + new Buffer(filename).toString(&apos;binary&apos;));</div><div class="line">            &#125;</div><div class="line">            let filestream = fs.createReadStream(filePath);</div><div class="line">            filestream.pipe(res);</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h3 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h3><p>上述代码经过测试，支持以下浏览器</p>
-<ul>
-<li>IE</li>
-<li>Chrome</li>
-<li>Firefox</li>
-<li>Edge</li>
-<li>360(极速、兼容)</li>
-<li>QQ(极速、兼容)</li>
-</ul>
-
-          
+          查看expressAPI，对于文件下载，最简单的实现下载方法为如下
+12345678res.download(&apos;/report-12345.pdf&apos;, &apos;report.pdf&apos;, function(err)&#123;  if (err) &#123;    
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/29/expressjs实现文件下载/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1342,18 +1314,21 @@
       
         
           
-            <p>由于需要，进行了反编译的学习，做了几次有点认识,及时总结下。</p>
-<h3 id="反编译需要用到工具"><a href="#反编译需要用到工具" class="headerlink" title="反编译需要用到工具"></a>反编译需要用到工具</h3><ul>
-<li><a href="https://github.com/skylot/jadx" target="_blank" rel="external">jadx</a> 去壳，反编译</li>
-<li>Charles、Fiddler,抓包</li>
-<li>Android Studio，阅读项目代码</li>
-</ul>
-<h3 id="关于反编译说明"><a href="#关于反编译说明" class="headerlink" title="关于反编译说明"></a>关于反编译说明</h3><p>— 目前安卓开发，在打包时候都是会进行<strong>代码混淆</strong>的，所以即使去壳反编译后，也不是说就完全的展示了项目的情况，但是基本上并不影响大体的阅读。<br>其实反编译一些优秀的app，阅读别人的代码，了解别人的整体设计，是种很不错的学习形式。<br>— 现在apk反编译已经有web在线形式的了，经过测试，我觉得上面的两个尤其<strong>decompileandroid</strong>做的还不错，尽可能的换原来项目原来的情况。<br>  其实目前的反编译工具，背后用的工具都是大同小异的，背后用到的工具是这几个dex2jar，JAD - Java Descompiler，apktool,zip/unzip</p>
-<ul>
-<li>前端本身是透明的，所以反编译用来学习很好，不要直接盗窃别人的劳动成果，这点是需要注意的。</li>
-</ul>
+          由于需要，进行了反编译的学习，做了几次有点认识,及时总结下。
+反编译需要用到工具
+jadx 去壳，反编译
+Charles、Fiddler,抓包
+Android Studio，阅读项目代码
 
-          
+关于反编译说明— 目前安卓开发，在打包时候都是会进行代码混淆的，所以即使去壳反编译后，也不是说就完全的展示了项
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/13/Android反编译/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1474,14 +1449,21 @@
       
         
           
-            <p>#部署思路</p>
-<ul>
-<li>VPS上部署hexo</li>
-<li>web发布文章</li>
-<li>自动化部署到github仓库</li>
-</ul>
+          #部署思路
+
+VPS上部署hexo
+web发布文章
+自动化部署到github仓库
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/05/VPS部署hexo/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1602,15 +1584,15 @@
       
         
           
-            <p>不知不觉，一年过去，回顾2016，蓦然发现，全年度几乎在做一个项目，一个项目复杂，难度，庞大，大到我需要付出大半年的时间去学习，去开发。与其说是项目的艰巨，不如说是自己的太差，时刻面临着挑战，这种感觉用战战兢兢，一点不为过，性格使然，家风使然，我不喜欢糊涂这么个词，于是我不断的打磨，打磨到客户都觉得慢了，中间，也做了数次的妥协，但今时今日再看自己付出心血参与的项目，内心的感觉，有安心，开心，也有眼泪，更有说不出的感慨。当项目日臻成熟，跃跃上线时，我少了那份焦躁,磨练出的是镇定的看待他人反馈的任何问题。</p>
-<p><strong>时间，打磨一个事儿，更修炼一个人。</strong></p>
-<p>全年的日夜奋战，拖垮了身体的大半（.1的夸张）但但凡的付出也总是换来不菲的回报，如今再看任何的技术，所谓的牛，我也不再是以前的那般感觉，我更相信掌握技术需要的是扎实的内功，敏捷的思维,足够的勤奋，及对所做的事，影响的人乃至自己有足够多的尊重，而已。</p>
-<p>于今年，我感谢指导我的人，支持我的人，关心我的人。</p>
-<p>于未来的一年，我更希望平衡工作与生活，实现良性的节奏感。</p>
-<p>留一文，纪念这多磨多难的2016。</p>
-<p>【分享】人都需要具备阶段性的自醒、外醒及觉知的能力：看待事物不是东不是西，而是指向内心，通过时时刻刻地自我批判性思考，衡量周围人事物不断变化对三观的影响，从而觉知下一阶段的自己。对大多数正确的废话置放层面取决于心智成熟度，人生没有对错的概念，只是角度问题。</p>
-
-          
+          不知不觉，一年过去，回顾2016，蓦然发现，全年度几乎在做一个项目，一个项目复杂，难度，庞大，大到我需要付出大半年的时间去学习，去开发。与其说是项目的艰巨，不如说是自己的太差，时刻面临着挑战，这种感觉用战战兢兢，一点不为过，性格使然，家风使然，我不喜欢糊涂这么个词，于是我不断的打磨，打磨到客户都觉得
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/31/2016-年末总结/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
