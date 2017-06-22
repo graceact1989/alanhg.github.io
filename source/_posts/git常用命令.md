@@ -43,6 +43,15 @@ $ git remote -v
 # 修改远程仓库对应的网址
 $ git remote set-url origin git@github.com:username/repo.git
 
+# 删除远程分支
+$ git push origin --delete <branchName>
+
+# 基于之前的某个 Commit 新开分支
+$ git branch <branchName> <sha1-of-commit>
+
+# 推送到主干
+$ git push origin <branchName>
+
 ```
 # 常见错误
 ## Git: fatal: Pathspec is in submodule
