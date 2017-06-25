@@ -14,7 +14,11 @@ head -n 1 /etc/issue   # 查看操作系统版本
 env # 查看环境变量
 
 ```
-
+## 账户权限
+```
+# 修改当前用户密码
+$ passwd
+```
 ## 文件操作
 
 ```
@@ -26,6 +30,11 @@ $ rm filename
 
 # 删除文件夹
 $ rm -rf dir
+
+# 压缩
+$ tar zcvf FileName.tar.gz DirName
+# 解压
+$ tar zxvf FileName.tar.gz
 ```
 ## 目录操作
 
