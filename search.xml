@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[手机投射电脑工具]]></title>
+    <url>%2F2017%2F06%2F26%2F%E6%89%8B%E6%9C%BA%E6%8A%95%E5%B0%84%E7%94%B5%E8%84%91%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[结合形式 安卓手机+MAC笔记本-itools 安卓手机+Win笔记本-screen iPhone手机+MAC笔记本-自带quicktime iPhone手机+Win笔记本-itools 下载地址 screen itools]]></content>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NativeScript入门指南]]></title>
     <url>%2F2017%2F06%2F11%2FNativeScript%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%2F</url>
     <content type="text"><![CDATA[nativescript是个跨平台开发框架，号称性能只比原生差10%,同时又支持angular写法，这对于有web及ng开发人，算是足够有诱惑力啦。 环境搭建Node安装node安装具体直接到官网吧点击这里 建议： 安装nvm,控制机子多版本node问题 12nvm install nodenvm use 安装nrm,切换源到淘宝，提升装包速度 123$ npm i -g nrm$ nrm ls$ nrm use taobao //switch registry to taobao 安装NativeScript CLInpm install -g nativescript 注意，全局安装 IOS和Android环境安装不同平台，策略不同具体安装细节照着官网文档做，这里我没必要重复 Windows Mac Linux 注意: Android环境，建议首先安装androidstudio,通过官方ide去管理sdk更方便 如果之前配置过安卓环境对应的步骤可以略过 校验程序tns doctor 创建项目tns create HelloWorld --template nativescript-template-ng-tutorial注意:模板形式创建的项目缺少App_Resources资源文件夹内容，所以直接执行下面的运行会报错，从github的官方demo上下载点击这里，拷贝文件夹放入项目中。 运行项目12tns run androidtns run ios 到此为止，应该初步OK了，下来就是详细的跟着官方doc学习下基本思想和基本玩法了。]]></content>
@@ -23,8 +31,8 @@
     <url>%2F2017%2F06%2F04%2F%E4%B8%80%E6%AC%BEwakatime-app%2F</url>
     <content type="text"><![CDATA[Codetracker个人业余时间制作的APP a wakatime client可视化展示编码活动 What is wakatime?wakatime是个全自动化的时间追踪工具,依赖于大量的IDE插件及文本编辑器，可以对我们从事coding活动所花费的时间进行可视化展示，让你明白在那些时间里，都做了什么。 what is codetracker?codetracker是利用wakatimek开放的API，实现移动端可视化显示wakatime对于coding统计。用开源的技术做开发的事，一方面练习技术，解手痒，一方面满足自己或者有同类需求的友人。 时间匆匆流逝，其实我们做技术的更需要利用技术来了解自己的情况，而wakatime是个很好的工具，个人特别喜欢! 下载方式 Github官方仓库 腾讯应用商店 etc，陆续入驻中]]></content>
       <tags>
-        <tag>wakatime</tag>
         <tag>app</tag>
+        <tag>wakatime</tag>
       </tags>
   </entry>
   <entry>
@@ -96,8 +104,8 @@
     <content type="text"><![CDATA[还有ionicv4？ionic官方仓库已经创建了v4分支，也给出了v4的介绍及愿景，这里我翻一下，想看原文点击这里 翻译ionic组件向着以下目标发展 用户继续用angular组件开发APP和组件 开发和构建不会有变化 用户使用上的改变将会最小化 减少构建时间 减少启动时间 ionic组件的异步加载将会成为缺省配置 对于大多数部分，ionic-angular将会按照同样的方式继续工作，想之前的版本一样使用所有的API，然而少量复杂的组件比如ion-badge,将会使用标准的web组件规范V1，这些规范在主流浏览器中已经实现且运行，除此之外，对于那些不支持web组件的浏览器，polyfills将会按需添加，这点已经在v4项目中实现。 我们将会继续开发维护v3主干分支，根本上来说，v3与v4的差异性是内在的，外在来说，v3，v4等同。 变化@NgModule UpdatesWhat’s great is that Angular already supports and works with web components! In order to enable them simply add CUSTOM_ELEMENTS_SCHEMA to the schemas property of @NgModule, such as: import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from ‘@angular/core’; @NgModule({ … schemas: [CUSTOM_ELEMENTS_SCHEMA]})export class AppModule {} ion-label RequiredPreviously an ion-label would automatically get added to ion-item if one wasn’t provided. Now an ion-label must always be added if the item is used to display text. Item’s Text! 未来的目标ionic集成web组件标准，我们的目标之一是让ionic组件能够轻易的在所有主流的框架中运行。]]></content>
       <tags>
         <tag>ionic</tag>
-        <tag>app</tag>
         <tag>hybrid</tag>
+        <tag>app</tag>
       </tags>
   </entry>
   <entry>
@@ -114,8 +122,8 @@
     <content type="text"><![CDATA[ionic-demoionic在跨平台开发中占有一席之地，闲暇之余，这里把ionic好好玩了把，做了这个demo，将常用到的一些功能点融于项目中，同时对常见的问题一一整理放在issue中相信能够帮助一些人 说明 水平有限 问题查Issues,无，请添加issue,我会及时解答 有回答的issue，在项目代码中可以找到具体的应用，当然有时会有延迟，因为实在很忙，敬请见谅 ionic目前的最新版本是V3.1.1，未来还会是v4,准确来说现在叫ionic比叫ionic2而更对，angular4现在叫angular,以前是angularJS, ionic做APP行不行 没有最好的，只有最合适的，ionic这种跨平台开，让web开发人员具备了开发APP的能力，另外对于一些企业的一些项目，提供了最快捷，最有效，最经济的解决方案。 hybrid开发，从机理上来说，存在性能问题，但是随着用户手机设备的性能在提升，本身的ionic这种技术不断的优化，所以如果项目开发周期短，另外APP本身简单的话，使用ionic,没问题的 ionic经历了这几年，成熟了，现在推出的新ionic,最新版本是V3.1，经我使用，觉得进步还是很大的，体验不错 常见问题 如何学习ionic开发 ionic中引入echarts图表 ionic跨域问题 关于ionic启动速度问题注意事项]]></content>
       <tags>
         <tag>ionic</tag>
-        <tag>app</tag>
         <tag>hybrid</tag>
+        <tag>app</tag>
       </tags>
   </entry>
   <entry>
@@ -220,8 +228,8 @@
     <content type="text"><![CDATA[原英文仓库网址，点击这里 PM2 是一个node应用下，自带服务均衡的产品级进程管理器。使得能够保证应用一直处于运行状态，并且能够不间断的重启服务，方便管理这些系统任务。生产模式下启动一个应用是很容易的，就像这样:$ pm2 start app.jsPM2支持在Linux(稳定) &amp; MacOSx (稳定) &amp; Windows (稳定)工作. 安装PM2$ npm install pm2 -gnpm命令是在你安装node时，自带的CLI - 通过NVM安装node 更新PM21234# 安装最新版PM2$ npm install pm2 -g# 保存进程列表，退出旧的PM2，重新存储所有的进行$ pm2 update PM2是无缝更新。 主要功能命令表一览123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657# 常用$ npm install pm2 -g # 安装PM2$ pm2 start app.js # 启动应用，一旦应用出故障，自动重启(Node)$ pm2 start app.py # (Python)$ pm2 start npm -- start # # 集群模式 (Node.js only)$ pm2 start app.js -i 4 # 集群模式，启动4个应用实例 # 根据网络请求进行负载平衡$ pm2 reload all # 无间断重启$ pm2 scale [app-name] 10 # 将集群APP进程数调到10# 进程检测$ pm2 list # 列出所有以PM2形式启动的应用$ pm2 monit # 列出每个应用内存及CPU使用情况$ pm2 show [app-name] # 列出关于应用的所有信息# 日志管理$ pm2 logs # 列出所有应用日志$ pm2 logs [app-name] # 列出指定应用的日志$ pm2 logs --json # 以JSON格式列出日志$ pm2 flush$ pm2 reloadLogs# 进程状态管理$ pm2 start app.js --name=&quot;api&quot; # 启动应用，并命名为api$ pm2 start app.js -- -a 34 # 启动应用，并传参 &quot;-a 34&quot;$ pm2 start app.js --watch # 一单文件修改，重启应用$ pm2 start script.sh # 启动bash脚本$ pm2 start app.json # 启动app.json文件中声明的所有应用$ pm2 reset [app-name] # 重置应用计数器即重启次数$ pm2 stop all # 停止所有的应用$ pm2 stop 0 # 停止id为0的应用$ pm2 restart all # 重启所有应用$ pm2 gracefulReload all # 集群模式下重启所有应用$ pm2 delete all # 停止且删除所有应用$ pm2 delete 0 # 停止且删除id为0的应用# 启动管理$ pm2 startup # 监听初始化系统，生成且配置PM2启动脚本$ pm2 save # 存储当前进程列表$ pm2 resurrect # 重新存储之前存储的进程$ pm2 unstartup # 停用并删除启动程序$ pm2 update # 存储进程，中止并重新存储进程$ pm2 generate # 生成一个JSON格式样例配置文件# 部署$ pm2 deploy app.json prod setup # $ pm2 deploy app.json prod # $ pm2 deploy app.json prod revert 2 # # 模块系统$ pm2 module:generate [name] # 生成name名称的样例模块$ pm2 install pm2-logrotate # 安装模块(会有一个日志系统)$ pm2 uninstall pm2-logrotate # 模块卸载$ pm2 publish 进程管理一旦应用启动，你可以很方便的列出和管理 列出所有运行中的进程$ pm2 list直接管理你的进程123$ pm2 stop &lt;app_name|id|&apos;all&apos;|json_conf&gt;$ pm2 restart &lt;app_name|id|&apos;all&apos;|json_conf&gt;$ pm2 delete &lt;app_name|id|&apos;all&apos;|json_conf&gt; 负载均衡和不间断重启当应用启动时加上了-i &lt;instance_option&gt;选项时，集群模式便开启了。集群模式下，应用汇自动的平衡请求，这个模式下也允许你能够依据CPU的数目灵活的提升表现。被所有NODE主流框架和任何NODE应用支持而不需要任何code改变。 主要命令12345$ pm2 start app.js -i max # Enable load-balancer and start &apos;max&apos; instances (cpu nb)$ pm2 reload all # Zero second dowtime reload$ pm2 scale &lt;app_name&gt; &lt;instance_number&gt; # Increase / Decrease process number 更多信息关于如何在PM2下使用集群化 日志能力显示特定进程或者所有进程，实时，标准，真实，JSON和格式化输出 $ pm2 logs [&#39;all&#39;|app_name|app_id] [--json] [--format] [--raw] 例子：123456$ pm2 logs APP-NAME # Display APP-NAME logs$ pm2 logs --json # JSON output$ pm2 logs --format # Formated output$ pm2 flush # Flush all logs$ pm2 reloadLogs # Reload all logs 启动脚本生成PM2能够生成并配置启动脚本，从而使PM2和你的进程能够在每次服务器重启时保持运行状态。支持初始化系统包括：systemd (Ubuntu 16, CentOS, Arch), upstart (Ubuntu 14/12), launchd (MacOSx, Darwin), rc.d (FreeBSD).123456789# Auto detect init system + generate and setup PM2 boot at server startup$ pm2 startup# Manually specify the startup system# Can be: systemd, upstart, launchd, rcd$ pm2 startup [platform]# Disable and remove PM2 boot at server startup$ pm2 unstartup 在重启时保存进程列表$ pm2 save更多关于启动脚本 模块系统PM2内嵌了简单而强大的模块系统，安装一个模块是很简单直接的事。$ pm2 install &lt;module_name&gt;下面是一些兼容模块 (standalone Node.js applications managed by PM2): pm2-logrotate auto rotate logs of PM2 and applications managedpm2-webshell expose a fully capable terminal in browserspm2-server-monit monitor your server health 写你自己的模块 Keymetrics监测如果你使用PM2来管理你的NodeJS app，Keymetrics使得通过服务器去监测应用变得很容易。谢谢，希望你喜欢PM2！ 更多关于PM2的资料 Application Declaration via JS files Watch &amp; Restart PM2 API Deployment workflow PM2 on Heroku/Azure/App Engine PM2 auto completion Using PM2 in ElasticBeanStalk PM2 Tutorial Series 更新日志CHANGELOG 贡献者贡献者]]></content>
       <tags>
         <tag>node</tag>
-        <tag>pm2</tag>
         <tag>英翻</tag>
+        <tag>pm2</tag>
       </tags>
   </entry>
   <entry>
