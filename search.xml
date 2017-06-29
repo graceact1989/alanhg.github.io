@@ -83,7 +83,7 @@
   <entry>
     <title><![CDATA[linux常用命令]]></title>
     <url>%2F2017%2F05%2F15%2Flinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[查看系统信息123uname -a # 查看内核，操作系统，CPU信息 head -n 1 /etc/issue # 查看操作系统版本env # 查看环境变量 账户权限12# 修改当前用户密码$ passwd 文件操作12345678910111213vi filenamecat filename# 删除文件$ rm filename# 删除文件夹$ rm -rf dir# 压缩$ tar zcvf FileName.tar.gz DirName# 解压$ tar zxvf FileName.tar.gz 目录操作12# 当前用户目录下$ cd ~]]></content>
+    <content type="text"><![CDATA[查看系统信息123uname -a # 查看内核，操作系统，CPU信息 head -n 1 /etc/issue # 查看操作系统版本env # 查看环境变量 账户权限12# 修改当前用户密码$ passwd 文件操作1234567891011121314151617vi filenamecat filename# 删除文件$ rm filename# 删除文件夹$ rm -rf dir# 查找并删除$ find . -name test | xargs rm -rf # 压缩$ tar zcvf FileName.tar.gz DirName# 解压$ tar zxvf FileName.tar.gz 目录操作12# 当前用户目录下$ cd ~]]></content>
       <tags>
         <tag>linux</tag>
       </tags>
