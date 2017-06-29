@@ -31,8 +31,12 @@ $ rm filename
 # 删除文件夹
 $ rm -rf dir
 
+# 查找并删除
+$ find  .  -name test  | xargs rm -rf   
+
 # 压缩
 $ tar zcvf FileName.tar.gz DirName
+
 # 解压
 $ tar zxvf FileName.tar.gz
 ```
