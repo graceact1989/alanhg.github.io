@@ -23,6 +23,9 @@ git status
 # 添加当前目录的所有文件到暂存区
 git add .
 
+# 撤销暂存区的文件
+$ git reset HEAD <file>...
+
 git commit -m 'message'
 
 # 提交修改
@@ -66,3 +69,4 @@ $ git push origin <branchName>
 # 辅助资料
 
 + [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
++ [Git手册](https://git-scm.com/book/zh/v2)
