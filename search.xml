@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[angular5:倒计时开始]]></title>
+    <url>%2F2017%2F07%2F01%2Fangular5-%E5%80%92%E8%AE%A1%E6%97%B6%E5%BC%80%E5%A7%8B%2F</url>
+    <content type="text"><![CDATA[对于angular的下一个版本的过多信息，我们并不知情，但我们现在知道它会在10月份正式发布。 官方计划点击这里 1ng5将会是更好的ng，你将能够使用起来更轻松 ng4带来的其中一个变化是，在AOT编译模式下，体积更小，速度更快，他们的目标是减小组件生成的代码体积达60%。ng5将会更好，Minar保证，ng5将会比ng4更小更快，ng4到ng5的更新将会很流畅，并且编译也会更为简单。因为JIT与AOT的编译区别是令人懊恼的。后者将会成为缺省项，从而减少冲突。 Long-Term Support(LTS)支持 Minar透漏，所有使用ng最新预发布版本的Google应用及他们团队对于ng的稳定性，都感到非常满意。当然,除了那些没有使用的，使用了最新minor版本的都会受益，答案就是Long-Term Supportng4将会是第一个LTS的版本,对于接下来的6个月，Angular团队，将活跃在发布新版本和修复bug的路上。10月份,V4将会进入一段长期状态，只有严重的修复bug和安全补丁会被合并和发布。 对于更多ng5的信息，将会在ng-conf 2017披露，访问他们的YouTube频道吧]]></content>
+      <tags>
+        <tag>angular5</tag>
+        <tag>angular</tag>
+        <tag>英翻</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[手机投射电脑工具]]></title>
     <url>%2F2017%2F06%2F26%2F%E6%89%8B%E6%9C%BA%E6%8A%95%E5%B0%84%E7%94%B5%E8%84%91%E5%B7%A5%E5%85%B7%2F</url>
     <content type="text"><![CDATA[结合形式 安卓手机+MAC笔记本-itools 安卓手机+Win笔记本-screen iPhone手机+MAC笔记本-自带quicktime iPhone手机+Win笔记本-itools 下载地址 screen itools]]></content>
@@ -76,8 +86,8 @@
     <url>%2F2017%2F05%2F21%2Fionic-cli-v3-%E5%8F%91%E5%B8%83%2F</url>
     <content type="text"><![CDATA[英文原版大家好，很高兴的宣布，ionic cli v3版现在可以使用啦！自从我们发布CLI v3 Beta版和我们的彩蛋，我们已经见证了众多的早期Beta测试者在他们的ionic项目中成功的使用。这些测试者提供了大量的反馈，当然也有机会中奖。事实上，他们中的许多人几个小时内就找到了其中的彩蛋。尤其最近，当开发者在我们上周举办的编程马拉松中成为了Ionic Jedi Hacksters，我们获得了更多的回馈(编程马拉松战绩在这里)除了版本改变外，什么使得这个CLI这么特别呢，让我们看下这版CLI的几个关键点吧。 除了版本变化，这版的CLI特殊在哪呢，我们看下以下几个关键点吧: 速度+指南你可能会留意到这版CLI的安装是如此之快，部分原因是在消除了超过90MB的依赖和成千上万行的旧程序code!如今，当你安装CLI的时候，你会得到更小的空间占用，安装时间也会更短。所以，CLI的速度和表现是我们主要考虑点之一。 另一个考虑点是我们要提供更多的帮助、指南和反馈。大量的命令现在提供所需的交互信息，CLI试图在问题出来时，能够是有用的，有效的。命令帮助已经提升。仅仅加上--help参数到任意的命令上，就可以得到详细的输入信息和参数信息。我们也提供普通使用的样例信息，比如试下下面的这句命令ionic start --help 插件!我们对插件的架构使用的不同的方法，之前的CLI提供完成的东西，而如今，我们把非必要的命令拆离出，将这些功能以插件形式存在。这使得，在开发特定功能的项目时候，能够按需添加，并且，核心功能保持很小。 对于CLI-v3的首次发版，有以下4个CLI的官方插件 @ionic/cli-plugin-ionic-angular – 提供有用的构建工具和生成器@ionic/cli-plugin-ionic1 – ionic1项目的CLI@ionic/cli-plugin-cordova –对于ionic/cordova项目是重要的@ionic/cli-plugin-proxy – 代理插件 在Beta测试版时候，一个常见的问题是”为什么命令变了”，比如之前是ionic build，如今是ionic cordova build,我们深感这个是必要的改变，因为我们的开发者正在构建桌面，PWA和其它一些平台的ionic APP,为了去区分这些不同，我们做出了这个清单 开始吧确认你有Node 6+ 和 npm 3+ 卸载旧版CLI，全局安装新的CLI: 12npm uninstall -g ionicnpm install -g ionic@latest 在你的ionic项目下，确保你已经有标准的ionic项目结构体。比如ionic info，这个命令将试图校对你的项目类型，和推荐你安装需要的插件。如果你运行ionic cordova,将提示你安装cordova插件，如果你运行ionic --help，你将看到所有命令列表。对于ionic/cordova app,你需要安装cordova插件(ionic/cli-plugin-cordova)和项目插件(@ionic/cli-plugin-ionic-angular 或 @ionic/cli-plugin-ionic1)。 对于ionic angular:12npm install --save-dev --save-exact @ionic/cli-plugin-ionic-angular@latestnpm install --save-dev --save-exact @ionic/cli-plugin-cordova@latest 对于ionic 1:12npm install --save-dev --save-exact @ionic/cli-plugin-ionic1@latestnpm install --save-dev --save-exact @ionic/cli-plugin-cordova@latest CLI也会偶尔提醒你更新这些插件。 已知的问题对于已经发布的CLI V3，我们有些事情正在做 ionic start 仍然花费很长的时间取下载依赖。(#2231) ionic start 目前还不支持可选性，比如从github仓库，一个zip url或者ionic作者的项目 (#1989) 使用ionic cordova命令修改config.xml有4个空格，对于已存在的APP，会有警告信息。我们写入config.xml是因为资源生成和热启。 对于ionic1,一些gulp hook不能被掉起 在安卓设备上，升级到CLI v3在部署时，不能正确的提取 对于CLI更新的完整清单，请查看CHANGELOG.md,对于更多文档，请看README.md。 有问题？想法？反馈？请在仓库里创建Issue，让我们知道。感谢所有的Beta测试者，尤其感谢那些在仓库上提出有贡献性的Issue、评论和PR的人。]]></content>
       <tags>
-        <tag>ionic</tag>
         <tag>英翻</tag>
+        <tag>ionic</tag>
       </tags>
   </entry>
   <entry>
@@ -209,8 +219,8 @@
     <content type="text"><![CDATA[2015已将结束，回首2015，大学毕业的第一年，投入了我热爱的编程事业，曾彷徨，曾犹豫，时愤怒，时不甘，不过总算走了过来，一年的努力并无我白费，所学的东西及思想已沉淀在我心中，技术之路的确很辛苦，但所幸这份热爱的火苗在2015并没熄灭，相反越烧越旺，2016，我将继续努力，开拓进取。2015有两件不足之处 第一，运动太少，所以体重直线上涨，每窥镜自视，伤心不已，新一年必勤加锻炼。 第二，阅读量太小，读书太少，使得表达捉襟见肘，对于事情理解也偏于狭隘，一位同事每每面对我的多愁善感时总告诉我，你看看书就知道了。这点真是对啊。2016，优化自己，继续前行！仅以此文，mark此新旧交替之时。]]></content>
       <tags>
         <tag>随笔</tag>
-        <tag>总结</tag>
         <tag>思索</tag>
+        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -227,8 +237,8 @@
     <url>%2F2016%2F09%2F19%2Fpm2%E4%BB%8B%E7%BB%8D%2F</url>
     <content type="text"><![CDATA[原英文仓库网址，点击这里 PM2 是一个node应用下，自带服务均衡的产品级进程管理器。使得能够保证应用一直处于运行状态，并且能够不间断的重启服务，方便管理这些系统任务。生产模式下启动一个应用是很容易的，就像这样:$ pm2 start app.jsPM2支持在Linux(稳定) &amp; MacOSx (稳定) &amp; Windows (稳定)工作. 安装PM2$ npm install pm2 -gnpm命令是在你安装node时，自带的CLI - 通过NVM安装node 更新PM21234# 安装最新版PM2$ npm install pm2 -g# 保存进程列表，退出旧的PM2，重新存储所有的进行$ pm2 update PM2是无缝更新。 主要功能命令表一览123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657# 常用$ npm install pm2 -g # 安装PM2$ pm2 start app.js # 启动应用，一旦应用出故障，自动重启(Node)$ pm2 start app.py # (Python)$ pm2 start npm -- start # # 集群模式 (Node.js only)$ pm2 start app.js -i 4 # 集群模式，启动4个应用实例 # 根据网络请求进行负载平衡$ pm2 reload all # 无间断重启$ pm2 scale [app-name] 10 # 将集群APP进程数调到10# 进程检测$ pm2 list # 列出所有以PM2形式启动的应用$ pm2 monit # 列出每个应用内存及CPU使用情况$ pm2 show [app-name] # 列出关于应用的所有信息# 日志管理$ pm2 logs # 列出所有应用日志$ pm2 logs [app-name] # 列出指定应用的日志$ pm2 logs --json # 以JSON格式列出日志$ pm2 flush$ pm2 reloadLogs# 进程状态管理$ pm2 start app.js --name=&quot;api&quot; # 启动应用，并命名为api$ pm2 start app.js -- -a 34 # 启动应用，并传参 &quot;-a 34&quot;$ pm2 start app.js --watch # 一单文件修改，重启应用$ pm2 start script.sh # 启动bash脚本$ pm2 start app.json # 启动app.json文件中声明的所有应用$ pm2 reset [app-name] # 重置应用计数器即重启次数$ pm2 stop all # 停止所有的应用$ pm2 stop 0 # 停止id为0的应用$ pm2 restart all # 重启所有应用$ pm2 gracefulReload all # 集群模式下重启所有应用$ pm2 delete all # 停止且删除所有应用$ pm2 delete 0 # 停止且删除id为0的应用# 启动管理$ pm2 startup # 监听初始化系统，生成且配置PM2启动脚本$ pm2 save # 存储当前进程列表$ pm2 resurrect # 重新存储之前存储的进程$ pm2 unstartup # 停用并删除启动程序$ pm2 update # 存储进程，中止并重新存储进程$ pm2 generate # 生成一个JSON格式样例配置文件# 部署$ pm2 deploy app.json prod setup # $ pm2 deploy app.json prod # $ pm2 deploy app.json prod revert 2 # # 模块系统$ pm2 module:generate [name] # 生成name名称的样例模块$ pm2 install pm2-logrotate # 安装模块(会有一个日志系统)$ pm2 uninstall pm2-logrotate # 模块卸载$ pm2 publish 进程管理一旦应用启动，你可以很方便的列出和管理 列出所有运行中的进程$ pm2 list直接管理你的进程123$ pm2 stop &lt;app_name|id|&apos;all&apos;|json_conf&gt;$ pm2 restart &lt;app_name|id|&apos;all&apos;|json_conf&gt;$ pm2 delete &lt;app_name|id|&apos;all&apos;|json_conf&gt; 负载均衡和不间断重启当应用启动时加上了-i &lt;instance_option&gt;选项时，集群模式便开启了。集群模式下，应用汇自动的平衡请求，这个模式下也允许你能够依据CPU的数目灵活的提升表现。被所有NODE主流框架和任何NODE应用支持而不需要任何code改变。 主要命令12345$ pm2 start app.js -i max # Enable load-balancer and start &apos;max&apos; instances (cpu nb)$ pm2 reload all # Zero second dowtime reload$ pm2 scale &lt;app_name&gt; &lt;instance_number&gt; # Increase / Decrease process number 更多信息关于如何在PM2下使用集群化 日志能力显示特定进程或者所有进程，实时，标准，真实，JSON和格式化输出 $ pm2 logs [&#39;all&#39;|app_name|app_id] [--json] [--format] [--raw] 例子：123456$ pm2 logs APP-NAME # Display APP-NAME logs$ pm2 logs --json # JSON output$ pm2 logs --format # Formated output$ pm2 flush # Flush all logs$ pm2 reloadLogs # Reload all logs 启动脚本生成PM2能够生成并配置启动脚本，从而使PM2和你的进程能够在每次服务器重启时保持运行状态。支持初始化系统包括：systemd (Ubuntu 16, CentOS, Arch), upstart (Ubuntu 14/12), launchd (MacOSx, Darwin), rc.d (FreeBSD).123456789# Auto detect init system + generate and setup PM2 boot at server startup$ pm2 startup# Manually specify the startup system# Can be: systemd, upstart, launchd, rcd$ pm2 startup [platform]# Disable and remove PM2 boot at server startup$ pm2 unstartup 在重启时保存进程列表$ pm2 save更多关于启动脚本 模块系统PM2内嵌了简单而强大的模块系统，安装一个模块是很简单直接的事。$ pm2 install &lt;module_name&gt;下面是一些兼容模块 (standalone Node.js applications managed by PM2): pm2-logrotate auto rotate logs of PM2 and applications managedpm2-webshell expose a fully capable terminal in browserspm2-server-monit monitor your server health 写你自己的模块 Keymetrics监测如果你使用PM2来管理你的NodeJS app，Keymetrics使得通过服务器去监测应用变得很容易。谢谢，希望你喜欢PM2！ 更多关于PM2的资料 Application Declaration via JS files Watch &amp; Restart PM2 API Deployment workflow PM2 on Heroku/Azure/App Engine PM2 auto completion Using PM2 in ElasticBeanStalk PM2 Tutorial Series 更新日志CHANGELOG 贡献者贡献者]]></content>
       <tags>
-        <tag>node</tag>
         <tag>英翻</tag>
+        <tag>node</tag>
         <tag>pm2</tag>
       </tags>
   </entry>
