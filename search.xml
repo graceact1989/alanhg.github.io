@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[利用cordova将移动网页打包]]></title>
+    <url>%2F2017%2F07%2F02%2F%E5%88%A9%E7%94%A8cordova%E5%B0%86%E7%A7%BB%E5%8A%A8%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[场景最近客户提出一个要求，就是既然我们已经有了移动网页版站点，但是让客户记住网址，输入网址这个是很辛苦的，那么就需要有APP，但是单纯开发APP的成本还是会不少，那么如何最大限度的复用既有的东西呢，比如移动网页版，这个时候就催生这么一种解决方案，利用Cordova这种混合开发工具将移动站点打包为APP，那么APP这种存在就有了，对于定向客户，其实APP跟网页唯一的区别只是存在形式的不同，并不需要有什么差异性的功能，那么这种情境下，将M站点进行打包APP就再合适不过了。 具体策略 cordova初始化项目初始化开发环境及细节请参见官方doc，这里没必要重复,点击这里 安装主要几个插件 $ cordova plugin add cordova-plugin-whitelist $ cordova plugin add cordova-plugin-splashscreen该插件主要控制APP启动画面的设定 $ cordova plugin add cordova-plugin-inappbrowser该插件实现在APP中利用内置浏览器打开目标网页 在index.js文件中，实现应用启动后打开对应站点即可1234567891011121314151617181920212223242526var app = &#123; // Application Constructor initialize: function () &#123; document.addEventListener(&apos;deviceready&apos;, onDeviceReady, false); &#125;, // deviceready Event Handler // // Bind any cordova events here. Common events are: // &apos;pause&apos;, &apos;resume&apos;, etc. onDeviceReady: function () &#123; this.receivedEvent(&apos;deviceready&apos;); &#125;, // Update DOM on a Received Event receivedEvent: function (id) &#123; &#125;&#125;;function onDeviceReady() &#123; // window.open = cordova.InAppBrowser.open; var url = &apos;http://apache.org&apos;; var target = &apos;_blank&apos;; var options = &quot;location=no,toolbar=no&quot;; cordova.InAppBrowser.open(url, target, options);&#125;app.initialize(); 总结这种方案，主要就是利用Cordova实现APP化，原理上来说就是做了个浏览器，但是伪装成了APP的模样。]]></content>
+      <tags>
+        <tag>hybrid</tag>
+        <tag>Cordova</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Cordova是什么]]></title>
     <url>%2F2017%2F07%2F02%2FCordova%E6%98%AF%E4%BB%80%E4%B9%88%2F</url>
     <content type="text"><![CDATA[Cordova是什么Cordova详细介绍及前世今生，建议看维基百科和官网,点击这里 我这里只做一个简短的介绍，Cordova是一个移动应用开发框架，Cordova使得开发者可以用CSS3、HTML5、Javascript来开发应用，它拓展了Html和Js在设备上的功能，这样的应用就是hybrid，它既不是真的原生应用(因为所有的布局渲染不是通过平台原生UI框架，而是Web Views)，也不是简单的web-app(它们被打包成APP，且具备访问原生设备API的能力)。 Ionic跟Cordova的关系是什么Ionic是用于构建Hybid-app的开源SDK，它提供了工具和服务来从事开发，Ionic是构建于angularjs和cordova之上的，所以可以明确ionic与cordova并不是一个层面的东西。 Cordova拿来干什么利用Cordova，开发人员可以用web开发技术来进行app开发，同时利用Cordova给与的访问设备底层api的接口，实现相机，蓝牙等功能。而Ionic这种技术的存在，是为了提升app开发效率，为我们提供了大量的组件轮子而已。]]></content>
@@ -96,8 +105,8 @@
     <url>%2F2017%2F05%2F21%2Fionic-cli-v3-%E5%8F%91%E5%B8%83%2F</url>
     <content type="text"><![CDATA[英文原版大家好，很高兴的宣布，ionic cli v3版现在可以使用啦！自从我们发布CLI v3 Beta版和我们的彩蛋，我们已经见证了众多的早期Beta测试者在他们的ionic项目中成功的使用。这些测试者提供了大量的反馈，当然也有机会中奖。事实上，他们中的许多人几个小时内就找到了其中的彩蛋。尤其最近，当开发者在我们上周举办的编程马拉松中成为了Ionic Jedi Hacksters，我们获得了更多的回馈(编程马拉松战绩在这里)除了版本改变外，什么使得这个CLI这么特别呢，让我们看下这版CLI的几个关键点吧。 除了版本变化，这版的CLI特殊在哪呢，我们看下以下几个关键点吧: 速度+指南你可能会留意到这版CLI的安装是如此之快，部分原因是在消除了超过90MB的依赖和成千上万行的旧程序code!如今，当你安装CLI的时候，你会得到更小的空间占用，安装时间也会更短。所以，CLI的速度和表现是我们主要考虑点之一。 另一个考虑点是我们要提供更多的帮助、指南和反馈。大量的命令现在提供所需的交互信息，CLI试图在问题出来时，能够是有用的，有效的。命令帮助已经提升。仅仅加上--help参数到任意的命令上，就可以得到详细的输入信息和参数信息。我们也提供普通使用的样例信息，比如试下下面的这句命令ionic start --help 插件!我们对插件的架构使用的不同的方法，之前的CLI提供完成的东西，而如今，我们把非必要的命令拆离出，将这些功能以插件形式存在。这使得，在开发特定功能的项目时候，能够按需添加，并且，核心功能保持很小。 对于CLI-v3的首次发版，有以下4个CLI的官方插件 @ionic/cli-plugin-ionic-angular – 提供有用的构建工具和生成器@ionic/cli-plugin-ionic1 – ionic1项目的CLI@ionic/cli-plugin-cordova –对于ionic/cordova项目是重要的@ionic/cli-plugin-proxy – 代理插件 在Beta测试版时候，一个常见的问题是”为什么命令变了”，比如之前是ionic build，如今是ionic cordova build,我们深感这个是必要的改变，因为我们的开发者正在构建桌面，PWA和其它一些平台的ionic APP,为了去区分这些不同，我们做出了这个清单 开始吧确认你有Node 6+ 和 npm 3+ 卸载旧版CLI，全局安装新的CLI: 12npm uninstall -g ionicnpm install -g ionic@latest 在你的ionic项目下，确保你已经有标准的ionic项目结构体。比如ionic info，这个命令将试图校对你的项目类型，和推荐你安装需要的插件。如果你运行ionic cordova,将提示你安装cordova插件，如果你运行ionic --help，你将看到所有命令列表。对于ionic/cordova app,你需要安装cordova插件(ionic/cli-plugin-cordova)和项目插件(@ionic/cli-plugin-ionic-angular 或 @ionic/cli-plugin-ionic1)。 对于ionic angular:12npm install --save-dev --save-exact @ionic/cli-plugin-ionic-angular@latestnpm install --save-dev --save-exact @ionic/cli-plugin-cordova@latest 对于ionic 1:12npm install --save-dev --save-exact @ionic/cli-plugin-ionic1@latestnpm install --save-dev --save-exact @ionic/cli-plugin-cordova@latest CLI也会偶尔提醒你更新这些插件。 已知的问题对于已经发布的CLI V3，我们有些事情正在做 ionic start 仍然花费很长的时间取下载依赖。(#2231) ionic start 目前还不支持可选性，比如从github仓库，一个zip url或者ionic作者的项目 (#1989) 使用ionic cordova命令修改config.xml有4个空格，对于已存在的APP，会有警告信息。我们写入config.xml是因为资源生成和热启。 对于ionic1,一些gulp hook不能被掉起 在安卓设备上，升级到CLI v3在部署时，不能正确的提取 对于CLI更新的完整清单，请查看CHANGELOG.md,对于更多文档，请看README.md。 有问题？想法？反馈？请在仓库里创建Issue，让我们知道。感谢所有的Beta测试者，尤其感谢那些在仓库上提出有贡献性的Issue、评论和PR的人。]]></content>
       <tags>
-        <tag>英翻</tag>
         <tag>ionic</tag>
+        <tag>英翻</tag>
       </tags>
   </entry>
   <entry>
