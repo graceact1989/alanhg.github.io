@@ -1,0 +1,52 @@
+---
+title: 利用cordova将移动网页打包
+tags:
+  - Cordova
+  - hybrid
+abbrlink: 3302c222
+date: 2017-07-02 22:46:11
+---
+## 场景
+最近客户提出一个要求，就是既然我们已经有了移动网页版站点，但是让客户记住网址，输入网址这个是很辛苦的，那么就需要有APP，但是单纯开发APP的成本还是会不少，那么如何最大限度的复用既有的东西呢，比如移动网页版，这个时候就催生这么一种解决方案，利用Cordova这种混合开发工具将移动站点打包为APP，那么APP这种存在就有了，对于定向客户，其实APP跟网页唯一的区别只是存在形式的不同，并不需要有什么差异性的功能，那么这种情境下，将M站点进行打包APP就再合适不过了。
+
+## 具体策略
+
++ cordova初始化项目
+初始化开发环境及细节请参见官方doc，这里没必要重复,[点击这里](https://cordova.apache.org/docs/en/latest/guide/cli/index.html)
++ 安装主要几个插件
+ - `$ cordova plugin add cordova-plugin-whitelist`
+ - `$ cordova plugin add cordova-plugin-splashscreen`
+    该插件主要控制APP启动画面的设定
+ - `$ cordova plugin add cordova-plugin-inappbrowser`
+    该插件实现在APP中利用内置浏览器打开目标网页
++ 在`index.js`文件中，实现应用启动后打开对应站点即可
+```
+var app = {
+    // Application Constructor
+    initialize: function () {
+        document.addEventListener('deviceready', onDeviceReady, false);
+    },
+
+    // deviceready Event Handler
+    //
+    // Bind any cordova events here. Common events are:
+    // 'pause', 'resume', etc.
+    onDeviceReady: function () {
+        this.receivedEvent('deviceready');
+    },
+
+    // Update DOM on a Received Event
+    receivedEvent: function (id) {
+    }
+};
+function onDeviceReady() {
+    // window.open = cordova.InAppBrowser.open;
+    var url = 'http://apache.org';
+    var target = '_blank';
+    var options = "location=no,toolbar=no";
+    cordova.InAppBrowser.open(url, target, options);
+}
+app.initialize();
+```
+## 总结
+这种方案，主要就是利用Cordova实现APP化，原理上来说就是做了个浏览器，但是伪装成了APP的模样。
