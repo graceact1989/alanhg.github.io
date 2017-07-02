@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cordova是什么]]></title>
+    <url>%2F2017%2F07%2F02%2FCordova%E6%98%AF%E4%BB%80%E4%B9%88%2F</url>
+    <content type="text"><![CDATA[Cordova是什么Cordova详细介绍及前世今生，建议看维基百科和官网,点击这里 我这里只做一个简短的介绍，Cordova是一个移动应用开发框架，Cordova使得开发者可以用CSS3、HTML5、Javascript来开发应用，它拓展了Html和Js在设备上的功能，这样的应用就是hybrid，它既不是真的原生应用(因为所有的布局渲染不是通过平台原生UI框架，而是Web Views)，也不是简单的web-app(它们被打包成APP，且具备访问原生设备API的能力)。 Ionic跟Cordova的关系是什么Ionic是用于构建Hybid-app的开源SDK，它提供了工具和服务来从事开发，Ionic是构建于angularjs和cordova之上的，所以可以明确ionic与cordova并不是一个层面的东西。 Cordova拿来干什么利用Cordova，开发人员可以用web开发技术来进行app开发，同时利用Cordova给与的访问设备底层api的接口，实现相机，蓝牙等功能。而Ionic这种技术的存在，是为了提升app开发效率，为我们提供了大量的组件轮子而已。]]></content>
+      <tags>
+        <tag>cordova</tag>
+        <tag>hybrid</tag>
+        <tag>ionic</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[angular5:倒计时开始]]></title>
     <url>%2F2017%2F07%2F01%2Fangular5-%E5%80%92%E8%AE%A1%E6%97%B6%E5%BC%80%E5%A7%8B%2F</url>
     <content type="text"><![CDATA[英文原文对于angular的下一个版本的过多信息，我们并不知情，但我们现在知道它会在10月份正式发布。 官方计划点击这里 1ng5将会是更好的ng，你将能够使用起来更轻松 ng4带来的其中一个变化是，在AOT编译模式下，体积更小，速度更快，他们的目标是减小组件生成的代码体积达60%。ng5将会更好，Minar保证，ng5将会比ng4更小更快，ng4到ng5的更新将会很流畅，并且编译也会更为简单。因为JIT与AOT的编译区别是令人懊恼的。后者将会成为缺省项，从而减少冲突。 Long-Term Support(LTS)支持 Minar透漏，所有使用ng最新预发布版本的Google应用及他们团队对于ng的稳定性，都感到非常满意。当然,除了那些没有使用的，使用了最新minor版本的都会受益，答案就是Long-Term Supportng4将会是第一个LTS的版本,对于接下来的6个月，Angular团队，将活跃在发布新版本和修复bug的路上。10月份,V4将会进入一段长期状态，只有严重的修复bug和安全补丁会被合并和发布。 对于更多ng5的信息，将会在ng-conf 2017披露，访问他们的YouTube频道吧]]></content>
@@ -113,8 +123,8 @@
     <url>%2F2017%2F05%2F06%2Fionicv4%E4%BB%8B%E7%BB%8D%2F</url>
     <content type="text"><![CDATA[还有ionicv4？ionic官方仓库已经创建了v4分支，也给出了v4的介绍及愿景，这里我翻一下，想看原文点击这里 翻译ionic组件向着以下目标发展 用户继续用angular组件开发APP和组件 开发和构建不会有变化 用户使用上的改变将会最小化 减少构建时间 减少启动时间 ionic组件的异步加载将会成为缺省配置 对于大多数部分，ionic-angular将会按照同样的方式继续工作，想之前的版本一样使用所有的API，然而少量复杂的组件比如ion-badge,将会使用标准的web组件规范V1，这些规范在主流浏览器中已经实现且运行，除此之外，对于那些不支持web组件的浏览器，polyfills将会按需添加，这点已经在v4项目中实现。 我们将会继续开发维护v3主干分支，根本上来说，v3与v4的差异性是内在的，外在来说，v3，v4等同。 变化@NgModule UpdatesWhat’s great is that Angular already supports and works with web components! In order to enable them simply add CUSTOM_ELEMENTS_SCHEMA to the schemas property of @NgModule, such as: import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from ‘@angular/core’; @NgModule({ … schemas: [CUSTOM_ELEMENTS_SCHEMA]})export class AppModule {} ion-label RequiredPreviously an ion-label would automatically get added to ion-item if one wasn’t provided. Now an ion-label must always be added if the item is used to display text. Item’s Text! 未来的目标ionic集成web组件标准，我们的目标之一是让ionic组件能够轻易的在所有主流的框架中运行。]]></content>
       <tags>
-        <tag>ionic</tag>
         <tag>hybrid</tag>
+        <tag>ionic</tag>
         <tag>app</tag>
       </tags>
   </entry>
@@ -131,8 +141,8 @@
     <url>%2F2017%2F04%2F29%2Fionic%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94%2F</url>
     <content type="text"><![CDATA[ionic-demoionic在跨平台开发中占有一席之地，闲暇之余，这里把ionic好好玩了把，做了这个demo，将常用到的一些功能点融于项目中，同时对常见的问题一一整理放在issue中相信能够帮助一些人 说明 水平有限 问题查Issues,无，请添加issue,我会及时解答 有回答的issue，在项目代码中可以找到具体的应用，当然有时会有延迟，因为实在很忙，敬请见谅 ionic目前的最新版本是V3.1.1，未来还会是v4,准确来说现在叫ionic比叫ionic2而更对，angular4现在叫angular,以前是angularJS, ionic做APP行不行 没有最好的，只有最合适的，ionic这种跨平台开，让web开发人员具备了开发APP的能力，另外对于一些企业的一些项目，提供了最快捷，最有效，最经济的解决方案。 hybrid开发，从机理上来说，存在性能问题，但是随着用户手机设备的性能在提升，本身的ionic这种技术不断的优化，所以如果项目开发周期短，另外APP本身简单的话，使用ionic,没问题的 ionic经历了这几年，成熟了，现在推出的新ionic,最新版本是V3.1，经我使用，觉得进步还是很大的，体验不错 常见问题 如何学习ionic开发 ionic中引入echarts图表 ionic跨域问题 关于ionic启动速度问题注意事项]]></content>
       <tags>
-        <tag>ionic</tag>
         <tag>hybrid</tag>
+        <tag>ionic</tag>
         <tag>app</tag>
       </tags>
   </entry>
@@ -219,8 +229,8 @@
     <content type="text"><![CDATA[2015已将结束，回首2015，大学毕业的第一年，投入了我热爱的编程事业，曾彷徨，曾犹豫，时愤怒，时不甘，不过总算走了过来，一年的努力并无我白费，所学的东西及思想已沉淀在我心中，技术之路的确很辛苦，但所幸这份热爱的火苗在2015并没熄灭，相反越烧越旺，2016，我将继续努力，开拓进取。2015有两件不足之处 第一，运动太少，所以体重直线上涨，每窥镜自视，伤心不已，新一年必勤加锻炼。 第二，阅读量太小，读书太少，使得表达捉襟见肘，对于事情理解也偏于狭隘，一位同事每每面对我的多愁善感时总告诉我，你看看书就知道了。这点真是对啊。2016，优化自己，继续前行！仅以此文，mark此新旧交替之时。]]></content>
       <tags>
         <tag>随笔</tag>
-        <tag>思索</tag>
         <tag>总结</tag>
+        <tag>思索</tag>
       </tags>
   </entry>
   <entry>

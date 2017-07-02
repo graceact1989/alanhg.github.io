@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://www.1991421.cn/2017/07/02/Cordova%E6%98%AF%E4%BB%80%E4%B9%88/</loc>
+    <lastmod>2017-07-02T09:56:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cordova是什么</title>
+        <pubTime>2017-07-02T09:31:43.000Z</pubTime>
+        
+        <tag>cordova</tag>
+         
+        <tag>hybrid</tag>
+         
+        <tag>ionic</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.1991421.cn/2017/07/01/angular5-%E5%80%92%E8%AE%A1%E6%97%B6%E5%BC%80%E5%A7%8B/</loc>
     <lastmod>2017-07-01T05:43:34.000Z</lastmod>
     <data>
@@ -169,54 +190,16 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2017/05/31/expressjs%E8%8E%B7%E5%8E%BB%E8%AF%B7%E6%B1%82IP%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://www.1991421.cn/2016/09/19/jstree%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>expressjs获去请求IP问题</title>
-        <pubTime>2017-05-31T15:06:05.000Z</pubTime>
+        <title>jstree使用说明</title>
+        <pubTime>2016-09-19T10:07:22.000Z</pubTime>
         
-        <tag>expressjs</tag>
+        <tag>jquery</tag>
          
-        <tag>proxy</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.1991421.cn/2017/03/29/expressjs%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</loc>
-    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>express实现文件下载</title>
-        <pubTime>2017-03-29T12:36:47.000Z</pubTime>
-        
-        <tag>expressjs</tag>
-         
-        <tag>node</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.1991421.cn/2017/05/21/ionic-cli-v3-%E5%8F%91%E5%B8%83/</loc>
-    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>ionic cli v3 发布</title>
-        <pubTime>2017-05-21T08:29:06.000Z</pubTime>
-        
-        <tag>英翻</tag>
-         
-        <tag>ionic</tag>
+        <tag>jstree</tag>
          
          
            
@@ -247,14 +230,54 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2016/12/31/2016-%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/</loc>
+    <loc>http://www.1991421.cn/2017/05/21/ionic-cli-v3-%E5%8F%91%E5%B8%83/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>2016-年末总结</title>
-        <pubTime>2016-12-31T13:30:52.000Z</pubTime>
+        <title>ionic cli v3 发布</title>
+        <pubTime>2017-05-21T08:29:06.000Z</pubTime>
         
+        <tag>英翻</tag>
+         
+        <tag>ionic</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.1991421.cn/2016/10/06/2016-%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>2016-年中总结</title>
+        <pubTime>2016-10-06T01:58:37.000Z</pubTime>
+        
+        <tag>随笔</tag>
+         
         <tag>总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.1991421.cn/2017/05/31/expressjs%E8%8E%B7%E5%8E%BB%E8%AF%B7%E6%B1%82IP%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>expressjs获去请求IP问题</title>
+        <pubTime>2017-05-31T15:06:05.000Z</pubTime>
+        
+        <tag>expressjs</tag>
+         
+        <tag>proxy</tag>
          
          
            
@@ -271,30 +294,11 @@
         <title>ionic2常见问题解答</title>
         <pubTime>2017-04-29T15:21:45.000Z</pubTime>
         
-        <tag>ionic</tag>
-         
         <tag>hybrid</tag>
          
+        <tag>ionic</tag>
+         
         <tag>app</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.1991421.cn/2016/09/19/jstree%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</loc>
-    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>jstree使用说明</title>
-        <pubTime>2016-09-19T10:07:22.000Z</pubTime>
-        
-        <tag>jquery</tag>
-         
-        <tag>jstree</tag>
          
          
            
@@ -323,16 +327,52 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2016/10/06/2016-%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93/</loc>
+    <loc>http://www.1991421.cn/2017/02/05/VPS%E9%83%A8%E7%BD%B2hexo/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>2016-年中总结</title>
-        <pubTime>2016-10-06T01:58:37.000Z</pubTime>
+        <title>VPS部署hexo</title>
+        <pubTime>2017-02-05T04:31:00.000Z</pubTime>
         
-        <tag>随笔</tag>
          
-        <tag>总结</tag>
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.1991421.cn/2016/09/19/pm2%E4%BB%8B%E7%BB%8D/</loc>
+    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>PM2介绍</title>
+        <pubTime>2016-09-19T13:37:13.000Z</pubTime>
+        
+        <tag>英翻</tag>
+         
+        <tag>node</tag>
+         
+        <tag>pm2</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.1991421.cn/2017/04/05/nodejs%E6%97%A5%E5%BF%97%E7%BB%84%E4%BB%B6log4js%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/</loc>
+    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>nodejs日志组件log4js使用介绍</title>
+        <pubTime>2017-04-05T08:15:24.000Z</pubTime>
+        
+        <tag>nodejs</tag>
+         
+        <tag>log4js</tag>
          
          
            
@@ -363,61 +403,6 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2017/05/06/ionicv4%E4%BB%8B%E7%BB%8D/</loc>
-    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>ionicv4介绍</title>
-        <pubTime>2017-05-06T15:37:41.000Z</pubTime>
-        
-        <tag>ionic</tag>
-         
-        <tag>hybrid</tag>
-         
-        <tag>app</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.1991421.cn/2017/04/05/nodejs%E6%97%A5%E5%BF%97%E7%BB%84%E4%BB%B6log4js%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/</loc>
-    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>nodejs日志组件log4js使用介绍</title>
-        <pubTime>2017-04-05T08:15:24.000Z</pubTime>
-        
-        <tag>nodejs</tag>
-         
-        <tag>log4js</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.1991421.cn/2016/10/16/session%E5%9C%A8express%E4%B8%AD%E5%BA%94%E7%94%A8/</loc>
-    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>session在express中应用</title>
-        <pubTime>2016-10-16T06:49:01.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.1991421.cn/2016/10/06/2015-%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
@@ -427,30 +412,9 @@
         
         <tag>随笔</tag>
          
-        <tag>思索</tag>
-         
         <tag>总结</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.1991421.cn/2017/05/10/webpack%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85%E4%B8%AD%E6%96%87%E4%BB%B6hash%E5%80%BC%E4%B8%8D%E5%8F%98%E4%BD%86%E5%86%85%E5%AE%B9%E7%9A%84%E7%A1%AE%E6%9C%89%E5%8F%98%E5%8C%96%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3/</loc>
-    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>webpack构建打包中文件hash值不变但内容的确有变化问题分析及解决</title>
-        <pubTime>2017-05-10T15:08:11.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-        <tag>webpack</tag>
-         
-        <tag>compiler</tag>
+        <tag>思索</tag>
          
          
            
@@ -481,13 +445,19 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2017/04/29/%E4%BD%BF%E7%94%A8hexo%E9%85%8D%E5%90%88github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/</loc>
+    <loc>http://www.1991421.cn/2017/05/10/webpack%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85%E4%B8%AD%E6%96%87%E4%BB%B6hash%E5%80%BC%E4%B8%8D%E5%8F%98%E4%BD%86%E5%86%85%E5%AE%B9%E7%9A%84%E7%A1%AE%E6%9C%89%E5%8F%98%E5%8C%96%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>使用hexo配合github搭建个人站点</title>
-        <pubTime>2017-04-29T12:47:24.000Z</pubTime>
+        <title>webpack构建打包中文件hash值不变但内容的确有变化问题分析及解决</title>
+        <pubTime>2017-05-10T15:08:11.000Z</pubTime>
         
+        <tag>javascript</tag>
+         
+        <tag>webpack</tag>
+         
+        <tag>compiler</tag>
+         
          
            
         </display>
@@ -496,15 +466,32 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2016/09/03/%E5%90%AF%E5%8A%A8/</loc>
+    <loc>http://www.1991421.cn/2017/03/13/Android%E5%8F%8D%E7%BC%96%E8%AF%91/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>个人技术博文开启</title>
-        <pubTime>2016-09-03T06:31:56.000Z</pubTime>
+        <title>Android反编译</title>
+        <pubTime>2017-03-13T00:26:53.000Z</pubTime>
         
-        <tag>随笔</tag>
+        <tag>decompile</tag>
          
+        <tag>java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.1991421.cn/2016/10/16/session%E5%9C%A8express%E4%B8%AD%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>session在express中应用</title>
+        <pubTime>2016-10-16T06:49:01.000Z</pubTime>
+        
          
            
         </display>
@@ -523,6 +510,25 @@
         <tag>效率</tag>
          
         <tag>利器</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.1991421.cn/2017/03/29/expressjs%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</loc>
+    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>express实现文件下载</title>
+        <pubTime>2017-03-29T12:36:47.000Z</pubTime>
+        
+        <tag>expressjs</tag>
+         
+        <tag>node</tag>
          
          
            
@@ -551,18 +557,14 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2016/09/19/pm2%E4%BB%8B%E7%BB%8D/</loc>
+    <loc>http://www.1991421.cn/2016/09/03/%E5%90%AF%E5%8A%A8/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>PM2介绍</title>
-        <pubTime>2016-09-19T13:37:13.000Z</pubTime>
+        <title>个人技术博文开启</title>
+        <pubTime>2016-09-03T06:31:56.000Z</pubTime>
         
-        <tag>英翻</tag>
-         
-        <tag>node</tag>
-         
-        <tag>pm2</tag>
+        <tag>随笔</tag>
          
          
            
@@ -572,12 +574,12 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2017/02/05/VPS%E9%83%A8%E7%BD%B2hexo/</loc>
+    <loc>http://www.1991421.cn/2017/04/29/%E4%BD%BF%E7%94%A8hexo%E9%85%8D%E5%90%88github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>VPS部署hexo</title>
-        <pubTime>2017-02-05T04:31:00.000Z</pubTime>
+        <title>使用hexo配合github搭建个人站点</title>
+        <pubTime>2017-04-29T12:47:24.000Z</pubTime>
         
          
            
@@ -587,16 +589,35 @@
 
     
   <url>
-    <loc>http://www.1991421.cn/2017/03/13/Android%E5%8F%8D%E7%BC%96%E8%AF%91/</loc>
+    <loc>http://www.1991421.cn/2017/05/06/ionicv4%E4%BB%8B%E7%BB%8D/</loc>
     <lastmod>2017-06-03T07:37:46.000Z</lastmod>
     <data>
         <display>
-        <title>Android反编译</title>
-        <pubTime>2017-03-13T00:26:53.000Z</pubTime>
+        <title>ionicv4介绍</title>
+        <pubTime>2017-05-06T15:37:41.000Z</pubTime>
         
-        <tag>decompile</tag>
+        <tag>hybrid</tag>
          
-        <tag>java</tag>
+        <tag>ionic</tag>
+         
+        <tag>app</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.1991421.cn/2016/12/31/2016-%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-06-03T07:37:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>2016-年末总结</title>
+        <pubTime>2016-12-31T13:30:52.000Z</pubTime>
+        
+        <tag>总结</tag>
          
          
            
