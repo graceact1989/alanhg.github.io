@@ -19,7 +19,7 @@ date: 2017-07-02 22:46:11
     该插件主要控制APP启动画面的设定
  - `$ cordova plugin add cordova-plugin-inappbrowser`
     该插件实现在APP中利用内置浏览器打开目标网页
-+ 在`index.js`文件中，实现应用启动后打开对应站点即可
++ 在`index.js`文件中，实现应用启动后打开对应站点
 ```
 var app = {
     // Application Constructor
@@ -50,3 +50,6 @@ app.initialize();
 ```
 ## 总结
 这种方案，主要就是利用Cordova实现APP化，原理上来说就是做了个浏览器，但是伪装成了APP的模样。
+
+## 小技巧
+关于图标，除了UI设计师直接给定各个对应尺寸图标外，我认为利用ionic服务也是不错的选择，安装ionic框架后，利用`ionic resources`，根据模板图片，生成对应平台的各个尺寸图标也是个便捷方式,然后将图标生成config.xml中的对应配置项拷贝过来即可。

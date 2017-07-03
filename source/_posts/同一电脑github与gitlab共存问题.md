@@ -54,8 +54,8 @@ ssh -T git@192.168.1.150
 
 ## 注意细节
 
-由于git全局我配置的是我github的用户名和邮箱，所以在我git clone了gitlab仓库时，还需要在仓库根目录下进行下用户名和邮箱配置。
-不然提交上的记录显示的会是github的信息。
+由于git全局我配置的是github的用户名和邮箱，所以在git clone了gitlab仓库后，`初次`需要在仓库根目录下进行下用户名和邮箱配置。
+不然提交上的记录显示的会是github的账户信息。
 相关命令如下
 ```
 $ git config [--global] user.name "[name]"
