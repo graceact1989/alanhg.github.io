@@ -1,10 +1,11 @@
 ---
 title: travis-ci自动部署化blog
-date: 2017-07-04 22:33:54
 tags:
-- travis
-- ci
-- hexo
+  - travis
+  - ci
+  - hexo
+abbrlink: d10aa459
+date: 2017-07-04 22:33:54
 ---
 Travis CI is a hosted, distributed[2] continuous integration service used to build and test software projects hosted at GitHub.
 
