@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[git submodule使用场景]]></title>
+    <url>%2F2017%2F07%2F05%2Fgit-submodule%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%2F</url>
+    <content type="text"><![CDATA[使用场景耗费一年心血的项目上线已经有了一段时间，觉得可以喘口气了，这个时候领导下达命令，需要开发B项目了，但是B项目有这样一个特征，就是跟A特别像，这个像是从功能、展现形式等等都很像，领导希望能够快速开发出来，基于此，我就需要考虑如何能够解决这个架子改造及实现最大程度的code复用问题。我参与的项目整体技术架子如下:angular(frontend)-----------------node-express(backend)当时咨询了很多的人，自己也想过，因为公司项目本身是在gitlab上管理的，所以随之有以下三个方案: 一个仓库下，直接各个项目的都存在，仅仅是文件夹层面的区分,通过参数来控制 分支化处理，比如branch-project-a,branch-project-b git-submodule 方案对比对比这三个方案,分析:方案1肯定是直接否掉，因为这样子维护性就低的要死，仅仅是dev短期方便，但是人工造成错误的可能性及维护性都低，方案2，可以，但是这样就意味着多个项目是在一个仓库下进行dev和管理，那么换句话说这个developer的人就具有轻易的动多个项目的可能性，我认为这样子是很可怕的，另外，项目A与项目B的差异性开发就会导致未来分支数目众多，维护合并都不够清晰，简单，毕竟本来就不是一个项目，只是相似，仅此而已，so我认为方案2也应该杀掉。方案3，git子模块方案相当于将部分code抽离成独立的一个仓库，然后利用git的子模块机制进行映射引入，然后本身子模块也是个仓库就可以独立开发维护，项目中引入后，只管像用第三方包的方式一样去使用即可。思来想去，我认为方案最终要体现两点:项目A与项目B是两个相同，就决定了必须是独立的存在；项目A与项目B有相同点，决定了有一定的复用，所以基于此，确定选方案3 使用感受git子模块的使用就类似于我们node开发，使用npm管理所有的第三方类包一样，只管去用，但不要试图直接去改，因为你只是使用方。git子模块的引入使用也是倒逼着将项目中的代码，进行一定程度的抽离抽象，能够适应更多的情况，这样对于代码的质量、灵活性、乃至开发人员本身的技能认识，都会有不少的帮助。所以建议那些在实际dev中遇到如上场景的，建议使用这种机制吧。]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[travis-ci自动部署化blog]]></title>
+    <url>%2F2017%2F07%2F04%2Ftravis-ci%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8C%96blog%2F</url>
+    <content type="text"><![CDATA[Travis CI is a hosted, distributed[2] continuous integration service used to build and test software projects hosted at GitHub. 背景在github上部署了个人blog，为了便于在不同工作台上进行blog，所以将blog平台源码作为blog仓库分支也托管上，目前仓库下有master(静态页)，source(源码)。 CI化之前每次增加新blog后，需要依次执行以下动作12345678# 1.添加修改文件$ git add .# 2.提交修改内容到暂存区$ git commit -m &apos;update&apos;# 3.push到远程仓库$ git push# 4.生成新的静态页，然后部署到仓库主干即静态页分支下$ hexo g -d CI化之后只要有source分支下有新的推送，即可自动执行部署及推动到静态页主干，也就是以后写blog,不需要再操心静态页部署更新环节,即上面操作的第四步。]]></content>
+      <tags>
+        <tag>travis</tag>
+        <tag>ci</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[利用cordova将移动网页打包]]></title>
+    <url>%2F2017%2F07%2F02%2F%E5%88%A9%E7%94%A8cordova%E5%B0%86%E7%A7%BB%E5%8A%A8%E7%BD%91%E9%A1%B5%E6%89%93%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[场景最近客户提出一个要求，就是既然我们已经有了移动网页版站点，但是让客户记住网址，输入网址这个是很辛苦的，那么就需要有APP，但是单纯开发APP的成本还是会不少，那么如何最大限度的复用既有的东西呢，比如移动网页版，这个时候就催生这么一种解决方案，利用Cordova这种混合开发工具将移动站点打包为APP，那么APP这种存在就有了，对于定向客户，其实APP跟网页唯一的区别只是存在形式的不同，并不需要有什么差异性的功能，那么这种情境下，将M站点进行打包APP就再合适不过了。 具体策略 cordova初始化项目初始化开发环境及细节请参见官方doc，这里没必要重复,点击这里 安装主要几个插件 $ cordova plugin add cordova-plugin-whitelist $ cordova plugin add cordova-plugin-splashscreen该插件主要控制APP启动画面的设定 $ cordova plugin add cordova-plugin-inappbrowser该插件实现在APP中利用内置浏览器打开目标网页 在index.js文件中，实现应用启动后打开对应站点1234567891011121314151617181920212223242526var app = &#123; // Application Constructor initialize: function () &#123; document.addEventListener(&apos;deviceready&apos;, onDeviceReady, false); &#125;, // deviceready Event Handler // // Bind any cordova events here. Common events are: // &apos;pause&apos;, &apos;resume&apos;, etc. onDeviceReady: function () &#123; this.receivedEvent(&apos;deviceready&apos;); &#125;, // Update DOM on a Received Event receivedEvent: function (id) &#123; &#125;&#125;;function onDeviceReady() &#123; // window.open = cordova.InAppBrowser.open; var url = &apos;http://apache.org&apos;; var target = &apos;_blank&apos;; var options = &quot;location=no,toolbar=no&quot;; cordova.InAppBrowser.open(url, target, options);&#125;app.initialize(); 总结这种方案，主要就是利用Cordova实现APP化，原理上来说就是做了个浏览器，但是伪装成了APP的模样。 小技巧关于图标，除了UI设计师直接给定各个对应尺寸图标外，我认为利用ionic服务也是不错的选择，安装ionic框架后，利用ionic resources，根据模板图片，生成对应平台的各个尺寸图标也是个便捷方式,然后将图标生成config.xml中的对应配置项拷贝过来即可。]]></content>
+      <tags>
+        <tag>hybrid</tag>
+        <tag>Cordova</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Cordova是什么]]></title>
+    <url>%2F2017%2F07%2F02%2FCordova%E6%98%AF%E4%BB%80%E4%B9%88%2F</url>
+    <content type="text"><![CDATA[Cordova是什么Cordova详细介绍及前世今生，建议看维基百科和官网,点击这里 我这里只做一个简短的介绍，Cordova是一个移动应用开发框架，Cordova使得开发者可以用CSS3、HTML5、Javascript来开发应用，它拓展了Html和Js在设备上的功能，这样的应用就是hybrid，它既不是真的原生应用(因为所有的布局渲染不是通过平台原生UI框架，而是Web Views)，也不是简单的web-app(它们被打包成APP，且具备访问原生设备API的能力)。 Ionic跟Cordova的关系是什么Ionic是用于构建Hybid-app的开源SDK，它提供了工具和服务来从事开发，Ionic是构建于angularjs和cordova之上的，所以可以明确ionic与cordova并不是一个层面的东西。 Cordova拿来干什么利用Cordova，开发人员可以用web开发技术来进行app开发，同时利用Cordova给与的访问设备底层api的接口，实现相机，蓝牙等功能。而Ionic这种技术的存在，是为了提升app开发效率，为我们提供了大量的组件轮子而已。]]></content>
+      <tags>
+        <tag>cordova</tag>
+        <tag>hybrid</tag>
+        <tag>ionic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[angular5:倒计时开始]]></title>
+    <url>%2F2017%2F07%2F01%2Fangular5-%E5%80%92%E8%AE%A1%E6%97%B6%E5%BC%80%E5%A7%8B%2F</url>
+    <content type="text"><![CDATA[英文原文对于angular的下一个版本的过多信息，我们并不知情，但我们现在知道它会在10月份正式发布。 官方计划点击这里 1ng5将会是更好的ng，你将能够使用起来更轻松 ng4带来的其中一个变化是，在AOT编译模式下，体积更小，速度更快，他们的目标是减小组件生成的代码体积达60%。ng5将会更好，Minar保证，ng5将会比ng4更小更快，ng4到ng5的更新将会很流畅，并且编译也会更为简单。因为JIT与AOT的编译区别是令人懊恼的。后者将会成为缺省项，从而减少冲突。 Long-Term Support(LTS)支持 Minar透漏，所有使用ng最新预发布版本的Google应用及他们团队对于ng的稳定性，都感到非常满意。当然,除了那些没有使用的，使用了最新minor版本的都会受益，答案就是Long-Term Supportng4将会是第一个LTS的版本,对于接下来的6个月，Angular团队，将活跃在发布新版本和修复bug的路上。10月份,V4将会进入一段长期状态，只有严重的修复bug和安全补丁会被合并和发布。 对于更多ng5的信息，将会在ng-conf 2017披露，访问他们的YouTube频道吧]]></content>
+      <tags>
+        <tag>angular5</tag>
+        <tag>angular</tag>
+        <tag>英翻</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[手机投射电脑工具]]></title>
+    <url>%2F2017%2F06%2F26%2F%E6%89%8B%E6%9C%BA%E6%8A%95%E5%B0%84%E7%94%B5%E8%84%91%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[结合形式 安卓手机+MAC笔记本-itools 安卓手机+Win笔记本-screen iPhone手机+MAC笔记本-自带quicktime iPhone手机+Win笔记本-itools 下载地址 screen itools]]></content>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NativeScript入门指南]]></title>
+    <url>%2F2017%2F06%2F11%2FNativeScript%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%2F</url>
+    <content type="text"><![CDATA[nativescript是个跨平台开发框架，号称性能只比原生差10%,同时又支持angular写法，这对于有web及ng开发人，算是足够有诱惑力啦。 环境搭建Node安装node安装具体直接到官网吧点击这里 建议： 安装nvm,控制机子多版本node问题 12nvm install nodenvm use 安装nrm,切换源到淘宝，提升装包速度 123$ npm i -g nrm$ nrm ls$ nrm use taobao //switch registry to taobao 安装NativeScript CLInpm install -g nativescript 注意，全局安装 IOS和Android环境安装不同平台，策略不同具体安装细节照着官网文档做，这里我没必要重复 Windows Mac Linux 注意: Android环境，建议首先安装androidstudio,通过官方ide去管理sdk更方便 如果之前配置过安卓环境对应的步骤可以略过 校验程序tns doctor 创建项目tns create HelloWorld --template nativescript-template-ng-tutorial注意:模板形式创建的项目缺少App_Resources资源文件夹内容，所以直接执行下面的运行会报错，从github的官方demo上下载点击这里，拷贝文件夹放入项目中。 运行项目12tns run androidtns run ios 到此为止，应该初步OK了，下来就是详细的跟着官方doc学习下基本思想和基本玩法了。]]></content>
+      <tags>
+        <tag>nativescript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[同一电脑github与gitlab共存问题]]></title>
+    <url>%2F2017%2F06%2F05%2F%E5%90%8C%E4%B8%80%E7%94%B5%E8%84%91github%E4%B8%8Egitlab%E5%85%B1%E5%AD%98%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[问题描述在实际开发中，遇到这样一个问题，公司项目管理用到了gitlab，自己的业余项目开发用到了github，但两者的账户是不同的，以我为例，gitlab是公司邮箱he@company.com，github是个人邮箱he@1991421.cn这样就存在冲突问题，在网上检索后，总结下解决方法。 解决步骤 生成SSH-keywin环境下，请运行git客户端,mac默认终端即可。 123456cd ~/.ssh/# 生成github所需要用的，使用默认名称回车跳过$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot;# 生成gitlab公司所需要用的，进行重命名id_rsa_company$ ssh-keygen -t rsa -C &quot;he@1991421.cn&quot; 这样两者的密钥就是分开生成了 互不冲突 粘贴公钥到对应的平台cat id_rsa.pubcat id_rsa_company.pub 配置config执行touch config，创建配置文件将下面的配置粘贴进去 12345678# company-gitlabHost 192.168.1.140HostName 192.168.1.140IdentityFile ~/.ssh/id_rsa_company# githubHost githubHostName github.comIdentityFile ~/.ssh/id_rsa 检测是否成功 12345# githubssh -T git@github.com# 内网gitlabssh -T git@192.168.1.150 不报错，说明OK。这样就可以正常的取仓库代码和提交代码了。 注意细节由于git全局我配置的是github的用户名和邮箱，所以在git clone了gitlab仓库后，初次需要在仓库根目录下进行下用户名和邮箱配置。不然提交上的记录显示的会是github的账户信息。相关命令如下12$ git config [--global] user.name &quot;[name]&quot;$ git config [--global] user.email &quot;[email address]&quot;]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>github</tag>
+        <tag>gitlab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一款wakatime-app]]></title>
+    <url>%2F2017%2F06%2F04%2F%E4%B8%80%E6%AC%BEwakatime-app%2F</url>
+    <content type="text"><![CDATA[Codetracker个人业余时间制作的APP a wakatime client可视化展示编码活动 What is wakatime?wakatime是个全自动化的时间追踪工具,依赖于大量的IDE插件及文本编辑器，可以对我们从事coding活动所花费的时间进行可视化展示，让你明白在那些时间里，都做了什么。 what is codetracker?codetracker是利用wakatimek开放的API，实现移动端可视化显示wakatime对于coding统计。用开源的技术做开发的事，一方面练习技术，解手痒，一方面满足自己或者有同类需求的友人。 时间匆匆流逝，其实我们做技术的更需要利用技术来了解自己的情况，而wakatime是个很好的工具，个人特别喜欢! 下载方式 Github官方仓库 腾讯应用商店 etc，陆续入驻中]]></content>
+      <tags>
+        <tag>app</tag>
+        <tag>wakatime</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[expressjs获去请求IP问题]]></title>
+    <url>%2F2017%2F05%2F31%2Fexpressjs%E8%8E%B7%E5%8E%BB%E8%AF%B7%E6%B1%82IP%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[在实际开发中遇到这样的情况，比如一些外企企业，使用了网络代理，我在后端获取IP，发现存在空的情况。分析下，原因如下:当我们应用设定了信任代理的时候，直接使用req.ip获取的会是客户端的真实IP，但是信任代理的话，代理是会修改XXF头部信息的，比如我遇到的情况就是代理修改请求头，导致我获取的req.ip为空，其实代理改了头，隐藏了真实客户端IP的话，的确我们是不可能得到真实的客户端IP了，但是代理本身的IP还是可以得到的，所以，我就封装了我自己的获取IP方法， 12345678910111213141516171819/** * 获取客户端IP地址 * req.ips would be [&quot;client&quot;, &quot;proxy1&quot;, &quot;proxy2&quot;] * 优先取客户端真实IP或最接近客户端一级的代理IP */util.getClientIP = function (req) &#123; let ip = req.ip; if (!ip) &#123; for (let item in req.ips) &#123; if (item) &#123; ip = item; break; &#125; &#125; logger.info(&apos;req.ips&apos;); logger.info(JSON.stringify(req.ips)); &#125; return ip;&#125;; 这个方案主要是弥补了我单纯使用req.ip获取客户端IP，会存在空的问题。当然我们也可以设定不信任代理，但是这样子就意味着只获取客户端IP，永远不会知道代理环节的IP，所以代理信任设定，要看实际场景了。 app.enabled(‘trust proxy’)当设定了信任代理时，express会获得客户端连接请求中的IP地址。 req.ip使用req.ip获取请求IP地址，当设定了信任代理时，这个值会是X-Forwarded-For header中的最左边值。12req.ip// =&gt; &quot;127.0.0.1&quot; req.ips当设定了信任代理时，这个值会是个IP地址数组，req.ips会是这样[&quot;client&quot;, &quot;proxy1&quot;, &quot;proxy2&quot;]]]></content>
+      <tags>
+        <tag>expressjs</tag>
+        <tag>proxy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ionic安卓版签名打包]]></title>
+    <url>%2F2017%2F05%2F30%2Fionic%E5%AE%89%E5%8D%93%E7%89%88%E7%AD%BE%E5%90%8D%E6%89%93%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[创建平台1ionic cordova platform add android 创建签名文件1keytool -genkey -v -keystore he-release.keystore -alias he -keyalg RSA -keysize 2048 -validity 10000 创建签名配置文件在platforms/andoroid下创建release-signing.properties配置文件1234key.store=&lt;YOUR_KEYSTORE&gt;.keystorekey.store.password=&lt;YOUR_KEYSTORE password&gt;key.alias=&lt;YOUR_ALIAS&gt;key.alias.password=&lt;YOUR_ALIAS password&gt; 执行打包命令ionic cordova build android --prod --release在/platforms/android/build/outputs/apk下就会看到有android-release.apk文件。 其实也可以打包出来为签名版本的apk，通过命令行手动加签名，但是对比这个方案就会略显麻烦，建议按照上述这种方式，自动化加上签名。 参考文章Ionic 2 : Building A Release Android APK]]></content>
+      <tags>
+        <tag>ionic</tag>
+        <tag>android</tag>
+        <tag>release</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ionic开发-浏览器环境下如何使用本地插件]]></title>
+    <url>%2F2017%2F05%2F30%2Fionic%E5%BC%80%E5%8F%91-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E6%8F%92%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[官方原文 浏览器环境下使用本地化插件ionic native拥有130多个移动SDK插件，这点使得可能构建强大的ionic app。 由于历史原因，在浏览器环境下测试这些本地插件是很困难的，要求ionic开发者比如在物理设备或者虚拟机中进行测试，这是相当慢的一个过程。 ionic native3.0现在允许开发者能够伪装，在浏览器环境下通过重写类，是的能够提供测试数据，或者访问本地化API，比如HealthKit。 这意味着大量的ionic app能够不必部署到真机或者模拟器，就可以在浏览器环境下完全的构建了。一流的开发速度，闻所未闻。 伪装插件为了在浏览器环境下去使用ionic本地化插件，你只需要拓展这些传统插件类和重写一些函数。 让我们伪装下Camera插件返回一张图片吧。 首先在根模块导入Camera类.1import &#123; Camera &#125; from &apos;@ionic-native/camera&apos;; 然后创建类，拓展Camera类，伪装一个实现。 123providers: [ &#123; provide: Camera, useClass: CameraMock &#125;] 下面是完整的例子 123456789101112131415161718192021222324252627282930313233343536import &#123; NgModule, ErrorHandler &#125; from &apos;@angular/core&apos;;import &#123; BrowserModule &#125; from &apos;@angular/platform-browser&apos;;import &#123; IonicApp, IonicModule, IonicErrorHandler &#125; from &apos;ionic-angular&apos;;import &#123; MyApp &#125; from &apos;./app.component&apos;;import &#123; HomePage &#125; from &apos;../pages/home/home&apos;;import &#123; Camera &#125; from &apos;@ionic-native/camera&apos;;class CameraMock extends Camera &#123; getPicture(options) &#123; return new Promise((resolve, reject) =&gt; &#123; resolve(&quot;BASE_64_ENCODED_DATA_GOES_HERE&quot;); &#125;) &#125;&#125;@NgModule(&#123; declarations: [ MyApp, HomePage ], imports: [ BrowserModule, IonicModule.forRoot(MyApp) ], bootstrap: [IonicApp], entryComponents: [ MyApp, HomePage ], providers: [ &#123;provide: ErrorHandler, useClass: IonicErrorHandler&#125;, &#123; provide: Camera, useClass: CameraMock &#125; ]&#125;)export class AppModule &#123;&#125;]]></content>
+      <tags>
+        <tag>ionic</tag>
+        <tag>ionic native</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[redis使用介绍]]></title>
+    <url>%2F2017%2F05%2F24%2Fredis%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[简介Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。 相关操作12345678910111213# yum安装$ yum install -y redis# 简单 形式启动$ redis-server /etc/redis.conf# 服务形式启动$ service start redis# 进入CLI$ redis-cli# 服务自启动$ chkconfig redis on 其它 配置文件下载]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ionic cli v3 发布]]></title>
+    <url>%2F2017%2F05%2F21%2Fionic-cli-v3-%E5%8F%91%E5%B8%83%2F</url>
+    <content type="text"><![CDATA[英文原版大家好，很高兴的宣布，ionic cli v3版现在可以使用啦！自从我们发布CLI v3 Beta版和我们的彩蛋，我们已经见证了众多的早期Beta测试者在他们的ionic项目中成功的使用。这些测试者提供了大量的反馈，当然也有机会中奖。事实上，他们中的许多人几个小时内就找到了其中的彩蛋。尤其最近，当开发者在我们上周举办的编程马拉松中成为了Ionic Jedi Hacksters，我们获得了更多的回馈(编程马拉松战绩在这里)除了版本改变外，什么使得这个CLI这么特别呢，让我们看下这版CLI的几个关键点吧。 除了版本变化，这版的CLI特殊在哪呢，我们看下以下几个关键点吧: 速度+指南你可能会留意到这版CLI的安装是如此之快，部分原因是在消除了超过90MB的依赖和成千上万行的旧程序code!如今，当你安装CLI的时候，你会得到更小的空间占用，安装时间也会更短。所以，CLI的速度和表现是我们主要考虑点之一。 另一个考虑点是我们要提供更多的帮助、指南和反馈。大量的命令现在提供所需的交互信息，CLI试图在问题出来时，能够是有用的，有效的。命令帮助已经提升。仅仅加上--help参数到任意的命令上，就可以得到详细的输入信息和参数信息。我们也提供普通使用的样例信息，比如试下下面的这句命令ionic start --help 插件!我们对插件的架构使用的不同的方法，之前的CLI提供完成的东西，而如今，我们把非必要的命令拆离出，将这些功能以插件形式存在。这使得，在开发特定功能的项目时候，能够按需添加，并且，核心功能保持很小。 对于CLI-v3的首次发版，有以下4个CLI的官方插件 @ionic/cli-plugin-ionic-angular – 提供有用的构建工具和生成器@ionic/cli-plugin-ionic1 – ionic1项目的CLI@ionic/cli-plugin-cordova –对于ionic/cordova项目是重要的@ionic/cli-plugin-proxy – 代理插件 在Beta测试版时候，一个常见的问题是”为什么命令变了”，比如之前是ionic build，如今是ionic cordova build,我们深感这个是必要的改变，因为我们的开发者正在构建桌面，PWA和其它一些平台的ionic APP,为了去区分这些不同，我们做出了这个清单 开始吧确认你有Node 6+ 和 npm 3+ 卸载旧版CLI，全局安装新的CLI: 12npm uninstall -g ionicnpm install -g ionic@latest 在你的ionic项目下，确保你已经有标准的ionic项目结构体。比如ionic info，这个命令将试图校对你的项目类型，和推荐你安装需要的插件。如果你运行ionic cordova,将提示你安装cordova插件，如果你运行ionic --help，你将看到所有命令列表。对于ionic/cordova app,你需要安装cordova插件(ionic/cli-plugin-cordova)和项目插件(@ionic/cli-plugin-ionic-angular 或 @ionic/cli-plugin-ionic1)。 对于ionic angular:12npm install --save-dev --save-exact @ionic/cli-plugin-ionic-angular@latestnpm install --save-dev --save-exact @ionic/cli-plugin-cordova@latest 对于ionic 1:12npm install --save-dev --save-exact @ionic/cli-plugin-ionic1@latestnpm install --save-dev --save-exact @ionic/cli-plugin-cordova@latest CLI也会偶尔提醒你更新这些插件。 已知的问题对于已经发布的CLI V3，我们有些事情正在做 ionic start 仍然花费很长的时间取下载依赖。(#2231) ionic start 目前还不支持可选性，比如从github仓库，一个zip url或者ionic作者的项目 (#1989) 使用ionic cordova命令修改config.xml有4个空格，对于已存在的APP，会有警告信息。我们写入config.xml是因为资源生成和热启。 对于ionic1,一些gulp hook不能被掉起 在安卓设备上，升级到CLI v3在部署时，不能正确的提取 对于CLI更新的完整清单，请查看CHANGELOG.md,对于更多文档，请看README.md。 有问题？想法？反馈？请在仓库里创建Issue，让我们知道。感谢所有的Beta测试者，尤其感谢那些在仓库上提出有贡献性的Issue、评论和PR的人。]]></content>
+      <tags>
+        <tag>ionic</tag>
+        <tag>英翻</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux常用命令]]></title>
+    <url>%2F2017%2F05%2F15%2Flinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[查看系统信息123uname -a # 查看内核，操作系统，CPU信息 head -n 1 /etc/issue # 查看操作系统版本env # 查看环境变量 账户权限12# 修改当前用户密码$ passwd 文件操作1234567891011121314151617vi filenamecat filename# 删除文件$ rm filename# 删除文件夹$ rm -rf dir# 查找并删除$ find . -name test | xargs rm -rf # 压缩$ tar zcvf FileName.tar.gz DirName# 解压$ tar zxvf FileName.tar.gz 目录操作12# 当前用户目录下$ cd ~]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[webpack构建打包中文件hash值不变但内容的确有变化问题分析及解决]]></title>
+    <url>%2F2017%2F05%2F10%2Fwebpack%E6%9E%84%E5%BB%BA%E6%89%93%E5%8C%85%E4%B8%AD%E6%96%87%E4%BB%B6hash%E5%80%BC%E4%B8%8D%E5%8F%98%E4%BD%86%E5%86%85%E5%AE%B9%E7%9A%84%E7%A1%AE%E6%9C%89%E5%8F%98%E5%8C%96%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%2F</url>
+    <content type="text"><![CDATA[在利用webpack2作为构建工具打包Angular4时，出现一个问题就是有两个文件打包出来的哈希值不变。文件如下:12&apos;common&apos;: &apos;./node_modules/moment/moment.js&apos;,&apos;polyfills&apos;: `./client/$&#123;platform&#125;/polyfills.browser.ts`, 这两个文件，一个是服务于moment这个时间类库，一个是服务于处理SPA应用的浏览器兼容性问题，这两个文件，在webpack配置文件中我的配置方式如下123456789101112131415161718192021222324252627282930313233343536373839/** * Options affecting the output of the compilation. * * See: http://webpack.github.io/docs/configuration.html#output */ output: &#123; /** * The output directory as absolute path (required). * * See: http://webpack.github.io/docs/configuration.html#output-path */ path: helpers.root(&apos;dist&apos;), /** * Specifies the name of each output file on disk. * IMPORTANT: You must not specify an absolute path here! * * See: http://webpack.github.io/docs/configuration.html#output-filename */ filename: &apos;[name].[chunkhash].bundle.js&apos;, /** * The filename of the SourceMaps for the JavaScript files. * They are inside the output.path directory. * * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename */ sourceMapFilename: &apos;[name].[chunkhash].bundle.map&apos;, /** * The filename of non-entry chunks as relative path * inside the output.path directory. * * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename */ chunkFilename: &apos;[id].[chunkhash].chunk.js&apos; &#125;, 经过分析发现，打包后，入口文件即bundle文件的哈希值是不变的，但是内容是变了的，因为内容中牵扯到使用了webpackJsonp这个函数，而这样就会导致一种场景的存在，比如你的宿主文件index是不缓存的，但是index中指定了其中一个入口文件如上common，但是common的哈希值不变的，这样用户端就会使用缓存文件，但是chunk文件缺是新的，这样子，用户端是会有报错的问题。 但是为什么内容命名变了，但是hash值是不变的呢，这样子就得查资料，OK，解释如下: hash与chunkhash定义 [hash] is replaced by the hash of the compilation. [chunkhash] is replaced by the hash of the chunk. hash、chunkhash使用场景 chunkhash是根据具体模块文件的内容计算所得的hash值，所以某个文件的改动只会影响它本身的hash指纹，不会影响其他文件。 那这样子就明白刚才的问题了，的确ploy和common对应的文件没有改变，所以哈希值是不变的，但是因为我们整体项目比如模块产生了变动，实质上编译后是会导致内容产生变化的，所以，入口文件并不适合使用chunkhash，而应该使用hash。 参考相关文章 http://www.cnblogs.com/ihardcoder/p/5623411.html https://github.com/erm0l0v/webpack-md5-hash/issues/7]]></content>
+      <tags>
+        <tag>javascript</tag>
+        <tag>webpack</tag>
+        <tag>compiler</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ionicv4介绍]]></title>
+    <url>%2F2017%2F05%2F06%2Fionicv4%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[还有ionicv4？ionic官方仓库已经创建了v4分支，也给出了v4的介绍及愿景，这里我翻一下，想看原文点击这里 翻译ionic组件向着以下目标发展 用户继续用angular组件开发APP和组件 开发和构建不会有变化 用户使用上的改变将会最小化 减少构建时间 减少启动时间 ionic组件的异步加载将会成为缺省配置 对于大多数部分，ionic-angular将会按照同样的方式继续工作，想之前的版本一样使用所有的API，然而少量复杂的组件比如ion-badge,将会使用标准的web组件规范V1，这些规范在主流浏览器中已经实现且运行，除此之外，对于那些不支持web组件的浏览器，polyfills将会按需添加，这点已经在v4项目中实现。 我们将会继续开发维护v3主干分支，根本上来说，v3与v4的差异性是内在的，外在来说，v3，v4等同。 变化@NgModule UpdatesWhat’s great is that Angular already supports and works with web components! In order to enable them simply add CUSTOM_ELEMENTS_SCHEMA to the schemas property of @NgModule, such as: import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from ‘@angular/core’; @NgModule({ … schemas: [CUSTOM_ELEMENTS_SCHEMA]})export class AppModule {} ion-label RequiredPreviously an ion-label would automatically get added to ion-item if one wasn’t provided. Now an ion-label must always be added if the item is used to display text. Item’s Text! 未来的目标ionic集成web组件标准，我们的目标之一是让ionic组件能够轻易的在所有主流的框架中运行。]]></content>
+      <tags>
+        <tag>hybrid</tag>
+        <tag>ionic</tag>
+        <tag>app</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git常用命令]]></title>
+    <url>%2F2017%2F05%2F05%2Fgit%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[前言想玩好Github开源项目，不懂git不行，所以这里记录下，在使用中，用到的一些命令，方便自己以后去反复记忆，同时也希望能帮到一些朋友。 主要的命令记住，方便操作，其余的会查询即可。 命令以实际例子来说明，我在实际使用中用到的一些命令12345678910111213141516171819202122232425262728293031323334353637383940# 取github上仓库的某个分支git clone -b source git@github.com:heqiang421/heqiang421.github.io.gitgit status# 添加当前目录的所有文件到暂存区git add .# 撤销暂存区的文件$ git reset HEAD &lt;file&gt;...git commit -m &apos;message&apos;# 提交修改git push# 更新远程代码到本地git pull# 停止追踪指定文件，但该文件会保留在工作区$ git rm --cached [file]# 删除工作区文件，并且将这次删除放入暂存区$ git rm [file1] [file2] ...# 列出远程仓库信息,包括网址$ git remote -v# 修改远程仓库对应的网址$ git remote set-url origin git@github.com:username/repo.git# 删除远程分支$ git push origin --delete &lt;branchName&gt;# 基于之前的某个 Commit 新开分支$ git branch &lt;branchName&gt; &lt;sha1-of-commit&gt;# 推送到主干$ git push origin &lt;branchName&gt; 常见错误Git: fatal: Pathspec is in submodule 解决办法： 12git rm --cached directorygit add directory 辅助资料 常用 Git 命令清单 Git手册]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ionic2常见问题解答]]></title>
+    <url>%2F2017%2F04%2F29%2Fionic%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94%2F</url>
+    <content type="text"><![CDATA[ionic-demoionic在跨平台开发中占有一席之地，闲暇之余，这里把ionic好好玩了把，做了这个demo，将常用到的一些功能点融于项目中，同时对常见的问题一一整理放在issue中相信能够帮助一些人 说明 水平有限 问题查Issues,无，请添加issue,我会及时解答 有回答的issue，在项目代码中可以找到具体的应用，当然有时会有延迟，因为实在很忙，敬请见谅 ionic目前的最新版本是V3.1.1，未来还会是v4,准确来说现在叫ionic比叫ionic2而更对，angular4现在叫angular,以前是angularJS, ionic做APP行不行 没有最好的，只有最合适的，ionic这种跨平台开，让web开发人员具备了开发APP的能力，另外对于一些企业的一些项目，提供了最快捷，最有效，最经济的解决方案。 hybrid开发，从机理上来说，存在性能问题，但是随着用户手机设备的性能在提升，本身的ionic这种技术不断的优化，所以如果项目开发周期短，另外APP本身简单的话，使用ionic,没问题的 ionic经历了这几年，成熟了，现在推出的新ionic,最新版本是V3.1，经我使用，觉得进步还是很大的，体验不错 常见问题 如何学习ionic开发 ionic中引入echarts图表 ionic跨域问题 关于ionic启动速度问题注意事项]]></content>
+      <tags>
+        <tag>hybrid</tag>
+        <tag>ionic</tag>
+        <tag>app</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用hexo配合github搭建个人站点]]></title>
+    <url>%2F2017%2F04%2F29%2F%E4%BD%BF%E7%94%A8hexo%E9%85%8D%E5%90%88github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[常用命令123456789# 浏览器启动hexo s --debug# 生成静态页并直接部署hexo g -d# 创建一篇博文hexo new postname]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[个人利器分享]]></title>
+    <url>%2F2017%2F04%2F29%2F%E4%B8%AA%E4%BA%BA%E5%88%A9%E5%99%A8%E5%88%86%E4%BA%AB%2F</url>
+    <content type="text"><![CDATA[工欲善其事必先利其器 通过各个工具即利器来不断优化工作和生活 硬件 Macbook Pro -高效生产力工具 IPhone -重新定义了你对手机的认识，省心且强大 Kindle Paperwhite-墨水屏电子书阅读设备，真不错，续航也是好到爆 Filco机械键盘-日货，工艺，手感，好到爆，1000多元，对比实物，真不贵。 JBL蓝牙小音箱-真不错，音质可以 Logitech蓝牙鼠标-，不错，无线的确是未来，省空间 Fitbit Alta HR-轻薄的心率监测智能手环，健身、睡眠、时间,基本功能都有，颜值高。 Thermos保温杯-膳魔师热水杯，保温效果不错 Victorinox-瑞士军刀，做工真好，且锋利，对比平时买的几十元水果刀，差距太大了，`强烈推荐来一个 Braun剃须刀-博朗，德国做工，手感不错，用着舒服 Philips电动牙刷-，续航不错，质地也很好 软件 搬瓦工-搭建SS及VPN，解决墙的问题 Google photos-个人图片存储方案 印象笔记-知识管理 DASH-各技术API学习、检索工具 Iterm2-MAC下命令行利器 Putty-win下命令行利器 Chrome-浏览器第一选择 Switchhost-切换管理host配合项 JetbrainsIDE-旗下IDE，高效开发，大量节约时间，聚焦于开发-coding本身 visual studio code-轻量级code编辑器，资源消耗小，支持大量丰富插件 Macdown-mac下md编写利器，可惜win下没有类似好用的，正考虑自己写一个得了，顺便还开源 网易云音乐-音乐软件中最好，而且还免费 知乎APP-学知识 行者APP-骑行者需要 网站 Google,谷歌搜索才是搜索，百度，我呵呵 Github,一个程序员连这都不知道，也不常逛，我相信水平呵呵，很大程度上是这样 Twitter,比新浪微博干净 500px，美图聚集地 YouTube，看剧，我喜欢上这里，广告少，评论及推荐都挺有意思 iconfont,字体图标库，搞前端的必须 说明总结这些牌子、设备、软件、网站，是对我自己工作生活中整理的一部分，这些东西都潜移默化地影响生活中的点滴，而这些细节最终一定程度也会改变着我的生活和工作。同时呢，也分享给看到的网友，的确，这些东西很棒，你们可以一试。]]></content>
+      <tags>
+        <tag>效率</tag>
+        <tag>利器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nodejs日志组件log4js使用介绍]]></title>
+    <url>%2F2017%2F04%2F05%2Fnodejs%E6%97%A5%E5%BF%97%E7%BB%84%E4%BB%B6log4js%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[log4js]]></content>
+      <tags>
+        <tag>nodejs</tag>
+        <tag>log4js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[express实现文件下载]]></title>
+    <url>%2F2017%2F03%2F29%2Fexpressjs%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%2F</url>
+    <content type="text"><![CDATA[查看expressAPI，对于文件下载，最简单的实现下载方法为如下 12345678res.download(&apos;/report-12345.pdf&apos;, &apos;report.pdf&apos;, function(err)&#123; if (err) &#123; // Handle error, but keep in mind the response may be partially-sent // so check res.headersSent &#125; else &#123; // decrement a download credit, etc. &#125;&#125;); 但是这种方法在实际使用中，发现了问题，那就是苹果safari浏览器在下载时候，文件标题会自动截取一段，或者乱码，或者问号，一开始表示不解，IE都没事，利用fiddler进行抓包分析，发现res头部信息不对劲儿，存在两个filename，也就是不同浏览器对于重复filename处理，不一样，或者说safari对于重复filename会有问题，也就是res.download的写法毕竟是高度封装的，换句话说，不要用这种高度封装的写法就好了，那么如何解决呢。如下一种写法，这种没有高度封装，自己去写返回头部信息，经测试Safari下载果然没问题了。 1234567let filename = &quot;你好，地球人你好，地球人你好，地球人你好，地球人.pdf&quot;;let filePath = path.resolve(__dirname, &apos;..&apos;) + &apos;/static/pdf/test.pdf&apos;;let mimetype = mime.lookup(filePath);res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename=&apos; + new Buffer(filename).toString(&apos;binary&apos;));res.setHeader(&apos;Content-type&apos;, mimetype);let filestream = fs.createReadStream(filePath);filestream.pipe(res); 对比发现，写法1比写法2简单的多，但是目前对于Safari、IE支持是不好的，如果直接用写法2，Edge又会有问题，这时又要牵扯对于不同浏览器，文件名中英文一堆的逻辑判断处理，所以最好的解决办法是根据请求头部，对应处理下。对于浏览器判别可以用下面的类库 12345678910111213141516171819202122232425262728const parser = require(&apos;ua-parser-js&apos;);let ua = parser(req.headers[&apos;user-agent&apos;]); if ([&apos;Edge&apos;, &apos;Chrome&apos;, &apos;Firefox&apos;].indexOf(ua.browser.name) &gt; -1) &#123; res.download(filePath, filename, function (err) &#123; if (err) &#123; logger.error(&apos;有错误&apos;); logger.error(err) &#125; else &#123; &#125; &#125; ); &#125; else &#123; let mimetype = mime.lookup(filePath); res.setHeader(&apos;Content-type&apos;, mimetype); if (ua.browser.name == &apos;IE&apos;) &#123; res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename=&apos; + encodeURIComponent(filename)); &#125; /*else if (ua.browser.name == &apos;Firefox&apos;) &#123; res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename*=&quot;utf8\&apos;\&apos;&apos; + encodeURIComponent(filename) + &apos;&quot;&apos;); &#125; */ else &#123; /* safari等其他非主流浏览器只能自求多福了 */ res.setHeader(&apos;Content-Disposition&apos;, &apos;attachment; filename=&apos; + new Buffer(filename).toString(&apos;binary&apos;)); &#125; let filestream = fs.createReadStream(filePath); filestream.pipe(res); &#125; 浏览器支持上述代码经过测试，支持以下浏览器 IE Chrome Firefox Edge 360(极速、兼容) QQ(极速、兼容)]]></content>
+      <tags>
+        <tag>expressjs</tag>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Android反编译]]></title>
+    <url>%2F2017%2F03%2F13%2FAndroid%E5%8F%8D%E7%BC%96%E8%AF%91%2F</url>
+    <content type="text"><![CDATA[由于需要，进行了反编译的学习，做了几次有点认识,及时总结下。 反编译需要用到工具 jadx 去壳，反编译 Charles、Fiddler,抓包 Android Studio，阅读项目代码 关于反编译说明— 目前安卓开发，在打包时候都是会进行代码混淆的，所以即使去壳反编译后，也不是说就完全的展示了项目的情况，但是基本上并不影响大体的阅读。其实反编译一些优秀的app，阅读别人的代码，了解别人的整体设计，是种很不错的学习形式。— 现在apk反编译已经有web在线形式的了，经过测试，我觉得上面的两个尤其decompileandroid做的还不错，尽可能的换原来项目原来的情况。 其实目前的反编译工具，背后用的工具都是大同小异的，背后用到的工具是这几个dex2jar，JAD - Java Descompiler，apktool,zip/unzip 前端本身是透明的，所以反编译用来学习很好，不要直接盗窃别人的劳动成果，这点是需要注意的。]]></content>
+      <tags>
+        <tag>decompile</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[VPS部署hexo]]></title>
+    <url>%2F2017%2F02%2F05%2FVPS%E9%83%A8%E7%BD%B2hexo%2F</url>
+    <content type="text"><![CDATA[#部署思路 VPS上部署hexo web发布文章 自动化部署到github仓库]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[2016-年末总结]]></title>
+    <url>%2F2016%2F12%2F31%2F2016-%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[不知不觉，一年过去，回顾2016，蓦然发现，全年度几乎在做一个项目，一个项目复杂，难度，庞大，大到我需要付出大半年的时间去学习，去开发。与其说是项目的艰巨，不如说是自己的太差，时刻面临着挑战，这种感觉用战战兢兢，一点不为过，性格使然，家风使然，我不喜欢糊涂这么个词，于是我不断的打磨，打磨到客户都觉得慢了，中间，也做了数次的妥协，但今时今日再看自己付出心血参与的项目，内心的感觉，有安心，开心，也有眼泪，更有说不出的感慨。当项目日臻成熟，跃跃上线时，我少了那份焦躁,磨练出的是镇定的看待他人反馈的任何问题。 时间，打磨一个事儿，更修炼一个人。 全年的日夜奋战，拖垮了身体的大半（.1的夸张）但但凡的付出也总是换来不菲的回报，如今再看任何的技术，所谓的牛，我也不再是以前的那般感觉，我更相信掌握技术需要的是扎实的内功，敏捷的思维,足够的勤奋，及对所做的事，影响的人乃至自己有足够多的尊重，而已。 于今年，我感谢指导我的人，支持我的人，关心我的人。 于未来的一年，我更希望平衡工作与生活，实现良性的节奏感。 留一文，纪念这多磨多难的2016。 【分享】人都需要具备阶段性的自醒、外醒及觉知的能力：看待事物不是东不是西，而是指向内心，通过时时刻刻地自我批判性思考，衡量周围人事物不断变化对三观的影响，从而觉知下一阶段的自己。对大多数正确的废话置放层面取决于心智成熟度，人生没有对错的概念，只是角度问题。]]></content>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[session在express中应用]]></title>
+    <url>%2F2016%2F10%2F16%2Fsession%E5%9C%A8express%E4%B8%AD%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[ShadowSocks自定义规则]]></title>
+    <url>%2F2016%2F10%2F07%2FShadowSocks%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A7%84%E5%88%99%2F</url>
+    <content type="text"><![CDATA[点击ss,选择编辑用户规则格式如下1234! Put user rules line by line in this file.! See https://adblockplus.org/en/filter-cheatsheet||amazonaws.com||atom.io 保存即可。 规则大概描述如下123456789通配符支持，如 *.example.com/* 实际书写时可省略 * 如 .example.com/ 意即 *.example.com/*正则表达式支持，以\开始和结束， 如 \[\w]+:\/\/example.com\例外规则 @@，如 @@*.example.com/* 满足@@后规则的地址不使用代理匹配地址开始和结尾 |，如 |http://example.com、example.com| 分别表示以 http://example.com 开始和以 example.com 结束的地址|| 标记，如 ||example.com 则 http://example.com 、https://example.com 、ftp://example.com 等地址均满足条件，只用于匹配地址开头注释 ! 如 ! Comment分隔符^，表示除了字母、数字或者 _ - . % 之外的任何字符。如 http://example.com^ ，http://example.com/ 和 http://example.com:8000/ 均满足条件，而 http://example.com.ar/ 不满足条件 搬瓦工简介搬瓦工（BandwagonHost）是美国IT7公司旗下的一家提供便宜年付OVZ架构的VPS主机方案的服务商。因其价格便宜、且依托的商家比较靠谱，具有较高的性价比。https://bandwagonhost.com/]]></content>
+      <tags>
+        <tag>效率</tag>
+        <tag>利器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2016-年中总结]]></title>
+    <url>%2F2016%2F10%2F06%2F2016-%E5%B9%B4%E4%B8%AD%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[2015年已过去大半,总觉得该写些什么,想想写写,时间不能白溜走。今年感觉,技术有了很大的提升,从改进app到独立开发app[hybrid],再到新技术探索,独立承担整个平台架构开发,之间走了很多的弯路,碰了很多的钉子,但走过大半,真的觉得学会了好多。但是越往深学,越往广学,就越发觉得自己仍旧是个小白,这种滋味真的是不禁让人蛋疼不已,但又需要承认,无论哪个行业不都是如此嘛。这种傻傻的努力,让我在上半年的工作中一直处于高压,高强度的码字状态,至今日,我突然觉得能力真的有了提高,就跟射雕英雄传里的傻靖哥哥一样,还真就会了几招功夫,所以说功夫不负有心人,这句话真对的。当然上半年碰到的壁垒,也让我吸取了一定的教训,年轻赋予我们这些菜鸟的是冲劲儿,干劲儿,但同时也是没经验,考虑问题狭隘。这点在做大项目,新项目的时候,让我懊悔不已,但是也是让我大幅提高的试金石。总之,路漫漫,我还需要继续努力,想的多,想不明白,那就先别想,先把手头工作做好。 贴句特别喜欢的话,作为年中勉励之词技术和工具永远只是实现想法的手段,工具可能会被更好的工具替代,但思考本身却需要自己不断地更新完善。]]></content>
+      <tags>
+        <tag>随笔</tag>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2015-总结]]></title>
+    <url>%2F2016%2F10%2F06%2F2015-%E5%B9%B4%E6%9C%AB%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[2015已将结束，回首2015，大学毕业的第一年，投入了我热爱的编程事业，曾彷徨，曾犹豫，时愤怒，时不甘，不过总算走了过来，一年的努力并无我白费，所学的东西及思想已沉淀在我心中，技术之路的确很辛苦，但所幸这份热爱的火苗在2015并没熄灭，相反越烧越旺，2016，我将继续努力，开拓进取。2015有两件不足之处 第一，运动太少，所以体重直线上涨，每窥镜自视，伤心不已，新一年必勤加锻炼。 第二，阅读量太小，读书太少，使得表达捉襟见肘，对于事情理解也偏于狭隘，一位同事每每面对我的多愁善感时总告诉我，你看看书就知道了。这点真是对啊。2016，优化自己，继续前行！仅以此文，mark此新旧交替之时。]]></content>
+      <tags>
+        <tag>随笔</tag>
+        <tag>总结</tag>
+        <tag>思索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何使用Angular 2绑定表单元素]]></title>
+    <url>%2F2016%2F10%2F06%2F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Angular-2%E7%BB%91%E5%AE%9A%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[概述ng2的数据绑定为用户表单操作提供了便捷性,用户一旦修改了单选钮选项、输入框值、复选框、下拉菜单,绑定的对象属性就会修改,我们直接在ts|js中拿着用即可。下面贴出主要的代码块。 接口创建123456789101112// user.interface.tsexport interface User &#123; name: string; // text age?: number; // number gender?: string; // radio role?: string; // select (primitive) theme?: Theme; // select (object) topics?: string[]; // multiple select isActive?: boolean; // checkbox toggle?: string; // checkbox toggle either &apos;toggled&apos; or &apos;untoggled&apos;&#125; 在组件里创建对象并初始化值12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061import &#123; Component &#125; from &apos;@angular/core&apos;;import &#123; User &#125; from &apos;./user.interface&apos;;import &#123; Theme &#125; from &apos;./theme.interface&apos;;@Component(&#123; moduleId: module.id, selector: &apos;my-app&apos;, templateUrl: &apos;app.component.html&apos;,&#125;)export class AppComponent &#123; public user: User; public genders = [ &#123; value: &apos;F&apos;, display: &apos;Female&apos; &#125;, &#123; value: &apos;M&apos;, display: &apos;Male&apos; &#125; ]; public roles = [ &#123; value: &apos;admin&apos;, display: &apos;Administrator&apos; &#125;, &#123; value: &apos;guest&apos;, display: &apos;Guest&apos; &#125;, &#123; value: &apos;custom&apos;, display: &apos;Custom&apos; &#125; ] public themes: Theme[] = [ &#123; backgroundColor: &apos;black&apos;, fontColor: &apos;white&apos;, display: &apos;Dark&apos; &#125;, &#123; backgroundColor: &apos;white&apos;, fontColor: &apos;black&apos;, display: &apos;Light&apos; &#125;, &#123; backgroundColor: &apos;grey&apos;, fontColor: &apos;white&apos;, display: &apos;Sleek&apos; &#125; ]; public topics = [ &#123; value: &apos;game&apos;, display: &apos;Gaming&apos; &#125;, &#123; value: &apos;tech&apos;, display: &apos;Technology&apos; &#125;, &#123; value: &apos;life&apos;, display: &apos;Lifestyle&apos; &#125;, ]; public toggles = [ &#123; value: &apos;toggled&apos;, display: &apos;Toggled&apos; &#125;, &#123; value: &apos;untoggled&apos;, display: &apos;UnToggled&apos; &#125;, ]; public t = &#123; true: &#123; value: &apos;toggled&apos;, display: &apos;Toggled&apos; &#125;, false: &#123; value: &apos;untoggled&apos;, display: &apos;UnToggled&apos; &#125; &#125; ngOnInit() &#123; this.user = &#123; name: &apos;&apos;, gender: this.genders[0].value, role: null, theme: this.themes[0], isActive: false, toggle: this.toggles[1].value, topics: [this.topics[1].value] &#125; &#125; save(isValid: boolean, f: User) &#123; if (!isValid) return; console.log(f); &#125;&#125; 视图模板遍历展示1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465&lt;div class=&quot;container&quot;&gt; &lt;h1&gt;Add user&lt;/h1&gt; &lt;form #f=&quot;ngForm&quot; novalidate&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;label&gt;Name&lt;/label&gt; &lt;input type=&quot;text&quot; class=&quot;form-control&quot; name=&quot;name&quot; [(ngModel)]=&quot;user.name&quot;&gt; &lt;/div&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;label&gt;Age&lt;/label&gt; &lt;input type=&quot;number&quot; class=&quot;form-control&quot; name=&quot;age&quot; [(ngModel)]=&quot;user.age&quot;&gt; &lt;/div&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;label&gt;Gender&lt;/label&gt; &lt;div class=&quot;radio&quot; *ngFor=&quot;let gender of genders&quot;&gt; &lt;label&gt; &lt;input type=&quot;radio&quot; name=&quot;gender&quot; [(ngModel)]=&quot;user.gender&quot; [value]=&quot;gender.value&quot;&gt; &#123;&#123;gender.display&#125;&#125; &lt;/label&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;label&gt;Role&lt;/label&gt; &lt;select name=&quot;role&quot; class=&quot;form-control&quot; [(ngModel)]=&quot;user.role&quot;&gt; &lt;option *ngFor=&quot;let role of roles&quot; [value]=&quot;role.value&quot;&gt;&#123;&#123;role.display&#125;&#125;&lt;/option&gt; &lt;/select&gt; &lt;/div&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;label&gt;Theme&lt;/label&gt; &lt;select name=&quot;theme&quot; class=&quot;form-control&quot; [(ngModel)]=&quot;user.theme&quot;&gt; &lt;option *ngFor=&quot;let theme of themes&quot; [ngValue]=&quot;theme&quot;&gt;&#123;&#123;theme.display&#125;&#125;&lt;/option&gt; &lt;/select&gt; &lt;/div&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;div class=&quot;checkbox&quot;&gt; &lt;label&gt; &lt;input type=&quot;checkbox&quot; name=&quot;isActive&quot; [(ngModel)]=&quot;user.isActive&quot;&gt; Is Active &lt;/label&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;label&gt;Topics&lt;/label&gt; &lt;select multiple name=&quot;topics&quot; class=&quot;form-control&quot; [(ngModel)]=&quot;user.topics&quot;&gt; &lt;option *ngFor=&quot;let topic of topics&quot; [value]=&quot;topic.value&quot;&gt;&#123;&#123;topic.display&#125;&#125;&lt;/option&gt; &lt;/select&gt; &lt;/div&gt; &lt;div class=&quot;form-group&quot;&gt; &lt;input type=&quot;hidden&quot; name=&quot;toggle&quot; [(ngModel)]=&quot;user.toggle&quot;&gt; &lt;div class=&quot;checkbox&quot;&gt; &lt;label&gt; &lt;input type=&quot;checkbox&quot; [checked]=&quot;user.toggle === toggles[0].value&quot; (change)=&quot;$event.target.checked? (user.toggle = toggles[0].value) : (user.toggle = toggles[1].value)&quot;&gt; &#123;&#123; toggles[0].display &#125;&#125; &lt;/label&gt; &lt;/div&gt; &lt;/div&gt; &lt;button type=&quot;submit&quot; (click)=&quot;save(f.value, f.valid)&quot; class=&quot;btn btn-default&quot;&gt;Submit&lt;/button&gt; &lt;/form&gt; &lt;div style=&quot;margin-top: 20px&quot; *ngIf=&quot;f&quot;&gt; &lt;div&gt;Form details:-&lt;/div&gt; &lt;pre&gt;Is form valid?: &lt;br&gt;&#123;&#123;f.valid | json&#125;&#125;&lt;/pre&gt; &lt;pre&gt;Is form submitted?: &lt;br&gt;&#123;&#123;f.submitted | json&#125;&#125;&lt;/pre&gt; &lt;pre&gt;submitted value: &lt;br&gt;&#123;&#123;f.value | json&#125;&#125;&lt;/pre&gt; &lt;/div&gt;&lt;/div&gt;]]></content>
+      <tags>
+        <tag>angular2</tag>
+        <tag>数据绑定</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PM2介绍]]></title>
+    <url>%2F2016%2F09%2F19%2Fpm2%E4%BB%8B%E7%BB%8D%2F</url>
+    <content type="text"><![CDATA[原英文仓库网址，点击这里 PM2 是一个node应用下，自带服务均衡的产品级进程管理器。使得能够保证应用一直处于运行状态，并且能够不间断的重启服务，方便管理这些系统任务。生产模式下启动一个应用是很容易的，就像这样:$ pm2 start app.jsPM2支持在Linux(稳定) &amp; MacOSx (稳定) &amp; Windows (稳定)工作. 安装PM2$ npm install pm2 -gnpm命令是在你安装node时，自带的CLI - 通过NVM安装node 更新PM21234# 安装最新版PM2$ npm install pm2 -g# 保存进程列表，退出旧的PM2，重新存储所有的进行$ pm2 update PM2是无缝更新。 主要功能命令表一览123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657# 常用$ npm install pm2 -g # 安装PM2$ pm2 start app.js # 启动应用，一旦应用出故障，自动重启(Node)$ pm2 start app.py # (Python)$ pm2 start npm -- start # # 集群模式 (Node.js only)$ pm2 start app.js -i 4 # 集群模式，启动4个应用实例 # 根据网络请求进行负载平衡$ pm2 reload all # 无间断重启$ pm2 scale [app-name] 10 # 将集群APP进程数调到10# 进程检测$ pm2 list # 列出所有以PM2形式启动的应用$ pm2 monit # 列出每个应用内存及CPU使用情况$ pm2 show [app-name] # 列出关于应用的所有信息# 日志管理$ pm2 logs # 列出所有应用日志$ pm2 logs [app-name] # 列出指定应用的日志$ pm2 logs --json # 以JSON格式列出日志$ pm2 flush$ pm2 reloadLogs# 进程状态管理$ pm2 start app.js --name=&quot;api&quot; # 启动应用，并命名为api$ pm2 start app.js -- -a 34 # 启动应用，并传参 &quot;-a 34&quot;$ pm2 start app.js --watch # 一单文件修改，重启应用$ pm2 start script.sh # 启动bash脚本$ pm2 start app.json # 启动app.json文件中声明的所有应用$ pm2 reset [app-name] # 重置应用计数器即重启次数$ pm2 stop all # 停止所有的应用$ pm2 stop 0 # 停止id为0的应用$ pm2 restart all # 重启所有应用$ pm2 gracefulReload all # 集群模式下重启所有应用$ pm2 delete all # 停止且删除所有应用$ pm2 delete 0 # 停止且删除id为0的应用# 启动管理$ pm2 startup # 监听初始化系统，生成且配置PM2启动脚本$ pm2 save # 存储当前进程列表$ pm2 resurrect # 重新存储之前存储的进程$ pm2 unstartup # 停用并删除启动程序$ pm2 update # 存储进程，中止并重新存储进程$ pm2 generate # 生成一个JSON格式样例配置文件# 部署$ pm2 deploy app.json prod setup # $ pm2 deploy app.json prod # $ pm2 deploy app.json prod revert 2 # # 模块系统$ pm2 module:generate [name] # 生成name名称的样例模块$ pm2 install pm2-logrotate # 安装模块(会有一个日志系统)$ pm2 uninstall pm2-logrotate # 模块卸载$ pm2 publish 进程管理一旦应用启动，你可以很方便的列出和管理 列出所有运行中的进程$ pm2 list直接管理你的进程123$ pm2 stop &lt;app_name|id|&apos;all&apos;|json_conf&gt;$ pm2 restart &lt;app_name|id|&apos;all&apos;|json_conf&gt;$ pm2 delete &lt;app_name|id|&apos;all&apos;|json_conf&gt; 负载均衡和不间断重启当应用启动时加上了-i &lt;instance_option&gt;选项时，集群模式便开启了。集群模式下，应用汇自动的平衡请求，这个模式下也允许你能够依据CPU的数目灵活的提升表现。被所有NODE主流框架和任何NODE应用支持而不需要任何code改变。 主要命令12345$ pm2 start app.js -i max # Enable load-balancer and start &apos;max&apos; instances (cpu nb)$ pm2 reload all # Zero second dowtime reload$ pm2 scale &lt;app_name&gt; &lt;instance_number&gt; # Increase / Decrease process number 更多信息关于如何在PM2下使用集群化 日志能力显示特定进程或者所有进程，实时，标准，真实，JSON和格式化输出 $ pm2 logs [&#39;all&#39;|app_name|app_id] [--json] [--format] [--raw] 例子：123456$ pm2 logs APP-NAME # Display APP-NAME logs$ pm2 logs --json # JSON output$ pm2 logs --format # Formated output$ pm2 flush # Flush all logs$ pm2 reloadLogs # Reload all logs 启动脚本生成PM2能够生成并配置启动脚本，从而使PM2和你的进程能够在每次服务器重启时保持运行状态。支持初始化系统包括：systemd (Ubuntu 16, CentOS, Arch), upstart (Ubuntu 14/12), launchd (MacOSx, Darwin), rc.d (FreeBSD).123456789# Auto detect init system + generate and setup PM2 boot at server startup$ pm2 startup# Manually specify the startup system# Can be: systemd, upstart, launchd, rcd$ pm2 startup [platform]# Disable and remove PM2 boot at server startup$ pm2 unstartup 在重启时保存进程列表$ pm2 save更多关于启动脚本 模块系统PM2内嵌了简单而强大的模块系统，安装一个模块是很简单直接的事。$ pm2 install &lt;module_name&gt;下面是一些兼容模块 (standalone Node.js applications managed by PM2): pm2-logrotate auto rotate logs of PM2 and applications managedpm2-webshell expose a fully capable terminal in browserspm2-server-monit monitor your server health 写你自己的模块 Keymetrics监测如果你使用PM2来管理你的NodeJS app，Keymetrics使得通过服务器去监测应用变得很容易。谢谢，希望你喜欢PM2！ 更多关于PM2的资料 Application Declaration via JS files Watch &amp; Restart PM2 API Deployment workflow PM2 on Heroku/Azure/App Engine PM2 auto completion Using PM2 in ElasticBeanStalk PM2 Tutorial Series 更新日志CHANGELOG 贡献者贡献者]]></content>
+      <tags>
+        <tag>node</tag>
+        <tag>英翻</tag>
+        <tag>pm2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[jstree使用说明]]></title>
+    <url>%2F2016%2F09%2F19%2Fjstree%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%2F</url>
+    <content type="text"><![CDATA[前端开发,树插件在特定情形下还是有必要的,我在玩过ztree,jstree之后,对比觉得还是jstree更为灵活,单纯说api文档的话,必须承认ztree好些,但是我还是建议使用jstree,因为更灵活。这里贴出jstree官网:https://www.jstree.com/api/节点添加,重命名,删除代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;script&gt;function demo_create() &#123;var ref = $(&apos;#jstree_demo&apos;).jstree(true),sel = ref.get_selected();if(!sel.length) &#123; return false; &#125;sel = sel[0];sel = ref.create_node(sel, &#123;&quot;type&quot;:&quot;file&quot;&#125;);if(sel) &#123;ref.edit(sel);&#125;&#125;;function demo_rename() &#123;var ref = $(&apos;#jstree_demo&apos;).jstree(true),sel = ref.get_selected();if(!sel.length) &#123; return false; &#125;sel = sel[0];ref.edit(sel);&#125;;function demo_delete() &#123;var ref = $(&apos;#jstree_demo&apos;).jstree(true),sel = ref.get_selected();if(!sel.length) &#123; return false; &#125;ref.delete_node(sel);&#125;;$(function () &#123;var to = false;$(&apos;#demo_q&apos;).keyup(function () &#123;if(to) &#123; clearTimeout(to); &#125;to = setTimeout(function () &#123;var v = $(&apos;#demo_q&apos;).val();$(&apos;#jstree_demo&apos;).jstree(true).search(v);&#125;, 250);&#125;);testData = [&quot;Child 1&quot;, &#123; &quot;id&quot; : &quot;demo_child_1&quot;, &quot;text&quot; : &quot;Child 2&quot;, &quot;children&quot; : [ &#123; &quot;id&quot; : &quot;demo_child_2&quot;, &quot;text&quot; : &quot;One more&quot;, &quot;type&quot; : &quot;file&quot; &#125;] &#125;];$(&apos;#jstree_demo&apos;).jstree(&#123; &quot;core&quot; : &#123;&quot;animation&quot; : 0, &quot;check_callback&quot; : true, &quot;themes&quot; : &#123; &quot;stripes&quot; : true &#125;, &apos;data&apos; : testData &#125;,&quot;types&quot; : &#123;&quot;#&quot; : &#123; &quot;max_children&quot; : 1, &quot;max_depth&quot; : 4, &quot;valid_children&quot; : [&quot;root&quot;] &#125;,&quot;root&quot; : &#123; &quot;icon&quot; : &quot;/static/3.0.2/assets/images/tree_icon.png&quot;, &quot;valid_children&quot; : [&quot;default&quot;] &#125;,&quot;default&quot; : &#123; &quot;valid_children&quot; : [&quot;default&quot;,&quot;file&quot;] &#125;,&quot;file&quot; : &#123; &quot;icon&quot; : &quot;glyphicon glyphicon-file&quot;, &quot;valid_children&quot; : [] &#125;&#125;,&quot;plugins&quot; : [ &quot;contextmenu&quot;, &quot;dnd&quot;, &quot;search&quot;, &quot;state&quot;, &quot;types&quot;, &quot;wholerow&quot; ]&#125;);&#125;); &lt;/script&gt;]]></content>
+      <tags>
+        <tag>jquery</tag>
+        <tag>jstree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[angular2学习总结]]></title>
+    <url>%2F2016%2F09%2F10%2Fangular2%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[以下ng2即代表angular2,为简写方法。从事ng2开发已经有3个月,基本的思维都已经很熟悉,在此将自己的一些碎片想法写下来,作为自己的反思总结,也为一些新手提供建议。ng2为前端的js框架,那么也就意味着这些js文件最终都会是运行在客户端的,也就决定了这种框架做出的web必然会比传统如ssh、.net等技术做出的站点快,毕竟很多的逻辑都是跑在用户端,而不需要服务端去处理消化。ng1与ng2的区别个人认为需要在不同中看到相同,框架本身都是在进步,所以注定了不同,但是思维是不断的发展,并不会是180度大转弯,所以注定了有相同,比如2里面的指令,管道,其实1里面也会有只是管道当时还叫做过滤器,我想这并没有实质性的不同。通过实际的开发,我觉得2的开发效率其实比1高,另外2的性能会比1强,所以在真正选择框架开发,不妨一试。我觉得2的学习,即是学前端开发的面向对象思维,明白了这点,真正去学只要把ng2框架作为工具去实现具体的功能需求即可。ng2的学习以下为我在开发中主要学的几个站点,ng2官网的重要性毋庸置疑,官方doc永远是第一指南,而对应的github仓库则是查看别人在使用中返回哪些问题,github是全宇宙最先进的仓管,我觉得github上你是跟整个世界的程序员交流,棒极了。另外angualarclass的项目绝对值得一看,我一直认为看别人怎么写代码,构建,是学习的一个重要途径,你的优秀,源于自己努力,也源于学习他人。 https://angular.io/ https://angular.cn/ https://github.com/angular/angular https://github.com/AngularClass/awesome-angular2 https://github.com/AngularClass/angular2-webpack-starter]]></content>
+      <tags>
+        <tag>angular2</tag>
+        <tag>javascript</tag>
+        <tag>framework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[nginx安装及配置]]></title>
+    <url>%2F2016%2F09%2F10%2Fnginx%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[nginx简介最近在部署web站点,用到了nginx,这里记录主要相关操作及配置。来句概括的话，nginx是一个高性能的http与反向代理服务器,具体nginx了解请看官网及维基百科，了解下, 相关命令1234567891011# yum方式安装nginx$ yum -y install nginx# 启动nginx服务$ nginx# 重启nginx服务$ nginx -s reload# 停止nginx服务$ nginx -s stop 相关配置 gzip Gzip开启以后会将输出到用户浏览器的数据进行压缩的处理，减小通过网络传输的数据量，提高浏览的速度。 下面贴出在nginx.conf配置文件中配置gzip的基本信息1234567891011121314151617# 开启gzipgzip on;``# 启用gzip压缩的最小文件，小于设置值的文件将不会压缩gzip_min_length 1k;# gzip 压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明gzip_comp_level 2;# 进行压缩的文件类型。javascript有多种形式。其中的值可以在 mime.types 文件中找到。gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;# 是否在http header中添加Vary: Accept-Encoding，建议开启gzip_vary on;# 禁用IE 6 gzipgzip_disable &quot;MSIE [1-6]\.&quot;; 关于前端静态资源的gzip，我们也可以采取预压缩方案，这样子，对于用户请求，能够更快的服务，提升性能，比如webpack就可以再打包前端静态资源的时候，生成gz文件。这里贴出静态gzip配置项。 1gzip_static on; 反向代理 123456789101112#定义一个服务器，监听80端口，配置的域名是www.1991421.cnserver&#123; listen 80; # using www domain to access the main website server_name www.1991421.cn; access_log /var/log/nginx/www.log location / &#123; root /usr/www/website_root; &#125;&#125; 相关好文 Nginx何时取代Apache？]]></content>
+      <tags>
+        <tag>proxy</tag>
+        <tag>nginx</tag>
+        <tag>server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[个人技术博文开启]]></title>
+    <url>%2F2016%2F09%2F03%2F%E5%90%AF%E5%8A%A8%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;真正意义上的专属自己的第一个站点,以后在此博文上记录自己的点滴心得,我相信自己的记性,但我更相信笔头。踏雪有痕是我的口头禅之一。&emsp;&emsp;2014年7月毕业,转眼已经两年,这两年里,我自问比一般的人努力些,因为性格使然,当然也是家风使然,我往往倾向于比我优异的人去比,努力了两年,能力有了显著的提高,但是往往又都会遇见的新的问题,而我总之不满足于现状,所以一直在学,一直在做,也就不自觉成了奔跑的小强,当然我知道有更多的人比我更努力,做的更好,因为世界上总有少数优秀的人,正因为他们社会才一天天,更美好。&emsp;&emsp;一直以来没有养成写作的习惯,真是惭愧至极,说没时间,鬼才相信,一个人倘若真的有想为之事,总是能挤出时间的,感谢之前两年来的技术积累,今天这个看似简单的建站,实则也是之前蜗牛式的努力的一个小果子,但我希望它更是一粒种子,伴随着我的进击之路,留下那千丝万缕的想法经验,留给自己,留给本就取自于的互联网。&emsp;&emsp;我一直认为,优秀是一种习惯。码农世界很奇妙。]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+</search>
